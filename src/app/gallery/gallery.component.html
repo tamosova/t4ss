@@ -1,0 +1,15 @@
+<h3>Our cats</h3>
+<div class="gallery">
+    <div *ngFor="let cat of cats">
+        <div *ngIf= "cat.photoLink">
+            <div class="gallery-element">
+                <img src="assets/cats-photos/preview/{{cat.photoLink}}" (click)="openModal(cat)">
+                <a routerLink="/detail/{{cat.id}}">More info</a>
+            </div>
+            <jw-modal id={{cat.id}}>
+                <img src="assets/cats-photos/fullsize/{{cat.photoLink}}" >
+                <button (click)="closeModal(cat)" class="modal-button">Close</button>
+            </jw-modal>
+        </div>
+    </div>
+</div>

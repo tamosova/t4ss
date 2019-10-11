@@ -1,0 +1,7 @@
+<div *ngIf="cat">
+
+    <h2>{{cat.name | uppercase}}</h2>
+    <h3>Date of birth: {{cat.birthday | date}}</h3>
+    <img src="assets/cats-photos/fullsize/{{cat.photoLink}}" >
+    <button (click)="goBack()">go back</button>
+</div>
