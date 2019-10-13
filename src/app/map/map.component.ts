@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { latLng, LatLng, tileLayer } from 'leaflet';
+import { latLng, icon, marker, tileLayer, Layer } from 'leaflet';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit {
 
   constructor() { }
   optionsSpec: any = {
@@ -26,17 +26,42 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 		center: latLng(this.optionsSpec.center)
 
-	};
+  };
+  
+  markers: Layer[] = [];
 
-  ngOnInit(){}
+  addMarker() {
 
-  ngAfterViewInit() {
-    // console.log(L);
-    // const map = L.map('map').setView([51.505, -0.09], 13);
+		const newMarker = marker(
 
-    //     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    //     }).addTo(map);
-     }
+			[ 55.7558, 37.6173 ],
+
+			{
+
+				icon: icon({
+
+					iconSize: [ 25, 41 ],
+
+					iconAnchor: [ 13, 41 ],
+
+					iconUrl: 'marker-icon.png',
+
+					shadowUrl: 'marker-shadow.png'
+
+				})
+
+			}
+
+		);
+
+		this.markers.push(newMarker);
+
+	}
+
+  ngOnInit(){
+
+    this.addMarker();
+  }
+
   }
 
