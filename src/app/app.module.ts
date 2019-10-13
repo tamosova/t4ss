@@ -11,8 +11,10 @@ import { SearchComponent } from './search/search.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 import { ModalModule } from './_modal';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import appRoutes from './routerConfig';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import appRoutes from './routerConfig';
     CatDetailComponent,
     GalleryComponent,
     SearchComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    ModalModule
+    ModalModule,
+    LeafletModule.forRoot()
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
