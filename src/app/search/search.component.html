@@ -1,1 +1,7 @@
-<p>search works!</p>
+<input [(ngModel)]="searchText" placeholder="name">
+
+<ul>
+  <li *ngFor="let cat of cats | filter : searchText">
+    {{cat.name}}
+  </li>
+</ul>
