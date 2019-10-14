@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor, ErrorInterceptor,fakeBackendProvider } from './_helpers';
+
 
 import { AppComponent } from './app.component';
 import { AboutBreedComponent } from './about-breed/about-breed.component';
@@ -15,6 +17,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import appRoutes from './routerConfig';
 import { MapComponent } from './map/map.component';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -24,16 +29,25 @@ import { MapComponent } from './map/map.component';
     GalleryComponent,
     SearchComponent,
     WelcomeComponent,
-    MapComponent
+    MapComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     ModalModule,
-    LeafletModule.forRoot()
+    LeafletModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [HttpClientModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider,
+    HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

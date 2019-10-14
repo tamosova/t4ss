@@ -37,7 +37,6 @@ export class MapComponent implements OnInit {
   addMarkers()
   {
     this.catteries.forEach(cattery => {
-      console.log(cattery);
       let newMarker = marker(
         [cattery.coordX, cattery.coordY],
         {

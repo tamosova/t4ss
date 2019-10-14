@@ -12,7 +12,6 @@ export class MarkerCatteryService {
   constructor(private httpClient:HttpClient) { }
 
   getCatteries(): Observable<CatteryInfo[]> {
-    console.log('fetching data');
     return this.httpClient.get<CatteryInfo[]>(this.catteriesUrl);
   }
 

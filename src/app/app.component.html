@@ -1,11 +1,13 @@
 <body>
   <h1>{{title}}</h1>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a routerLink="home" routerLinkActive="active">Home</a>
-    <a routerLink="about">Breed</a>
-    <a routerLink="gallery">Photo Gallery</a>
-    <a routerLink="search">Search</a>
-    <a routerLink="catteries-map">Find Cattery</a>
+    <a class="nav-item nav-link" routerLink="home" routerLinkActive="active">Home</a>
+    <a class="nav-item nav-link" routerLink="about">Breed</a>
+    <a class="nav-item nav-link" routerLink="gallery">Photo Gallery</a>
+    <a class="nav-item nav-link" routerLink="search">Search</a>
+    <a class="nav-item nav-link" routerLink="catteries-map">Find Cattery</a>
+    <a class="nav-item nav-link" routerLink="login" *ngIf="!currentUser">Login</a>
+    <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
   </nav>
   <router-outlet class="content"></router-outlet>
 </body>

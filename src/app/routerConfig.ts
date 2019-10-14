@@ -5,6 +5,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { SearchComponent } from './search/search.component';
 import { CatDetailComponent } from './cat-detail/cat-detail.component'
 import { MapComponent } from './map/map.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   { path: 'home', 
@@ -29,6 +30,10 @@ const appRoutes: Routes = [
   {
     path: 'catteries-map',
     component: MapComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 export default appRoutes;
