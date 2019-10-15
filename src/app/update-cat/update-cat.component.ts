@@ -28,14 +28,6 @@ export class UpdateCatComponent implements OnInit {
     this.males =this.cats.filter(cat=>cat.gender === Gender.Female);
   }
 
-  /* getCats(): void {
-    this.catService.getCats()
-      .subscribe({
-        next:cats => this.cats = cats,
-        complete: () => this.fillInGenders()
-      });
-  } */
-
   getCatsAsClass():void {
 
 
@@ -61,28 +53,10 @@ export class UpdateCatComponent implements OnInit {
                 catJSON.photoLink))
             });
 
-            this.females =this.cats.filter(cat=>Gender[cat.gender] === Gender.Female);
-            this.males =this.cats.filter(cat=>Gender[cat.gender] === Gender.Male);
-            console.log("cat.gender=",this.cats[0].gender);
-            console.log("cat.gender=",this.cats[0].gender);
-    console.log("Gender.Male=",Gender.Male);
-    console.log("Gender['Male']=",Gender["Male"]);
-    console.log("Gender[0]", Gender[0]);  
-    console.log("Gender", Gender[0]);
+            this.females =this.cats.filter(cat=>cat.gender == Gender.Female);
+            this.males =this.cats.filter(cat=>cat.gender == Gender.Male);
     }
   
-  fillInGenders()
-  {
-/* console.log("cat=>cat.gender.toString() === Gender.Male.toString()", this.cats[0].gender.toString() === Gender.Male.toString())
-console.log("cat.gender=",this.cats[0].gender);
-console.log("Gender.Male=",Gender.Male); */
-
-
-    this.females =this.cats.filter(cat=>Gender[cat.gender] === 1);
-    this.males =this.cats.filter(cat=>Gender[cat.gender] === 0);
-
-  }
-
   onSelect(cat: Cat): void {
     this.selectedCat = cat;
     console.log(this.males);

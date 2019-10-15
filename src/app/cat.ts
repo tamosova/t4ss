@@ -15,7 +15,7 @@ export class Cat {
     constructor( id: number,
       name: string,
       birthday: Date,
-      gender: Gender,
+      gender: string,
       colour: string,
       sireId: number,
       damId: number,
@@ -25,7 +25,7 @@ export class Cat {
         this.id=id,
         this.name = name;
         this.birthday = birthday;
-        this.gender = gender;
+        this.gender = Gender[gender];
         this.colour = colour;
         this.sireId = sireId;
         this.damId = damId;
