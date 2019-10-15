@@ -2,6 +2,6 @@
 
 <ul>
   <li *ngFor="let cat of cats | filter : searchText">
-    {{cat.name}}
+    <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
   </li>
 </ul>

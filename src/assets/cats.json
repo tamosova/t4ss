@@ -15,7 +15,7 @@
         "gender":"Female", "colour": "d 03 24", "sireId": "", "damId":"", "title": "SC Fife",
          "breed": "KBL", "photoLink":"4.jpg"
     },
-    { "id": 4, "name": "Elizar Eridan", "birthday": "", 
+    { "id": 5, "name": "Elizar Eridan", "birthday": "", 
         "gender":"Male", "colour": "a 03 22", "sireId": "", "damId":"", "title": "",
          "breed": "KBL", "photoLink":""
     }
