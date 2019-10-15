@@ -19,10 +19,10 @@
             <input [(ngModel)]="selectedCat.colour" placeholder="colour" name="colour" required/>
         </label> 
 
-        <label class="form-element">birthday:
-            <input [(ngModel)]="selectedCat.birthday" name="birthday" required>
+        <label class="form-element" >birthday:
+            <input [ngModel]="selectedCat.birthday | date:'yyyy-MM-dd'" name="birthday" type="date" class="datepicker" (ngModelChange)="selectedCat.birthday = $event" >
         </label>
-        <label class="form-element">Father:
+        <label class="form-element">father:
         <select [(ngModel)]="selectedCat.sireId" name="sireId">
             <option *ngFor="let male of males" value={{male.id}}>
               {{male.name}}
@@ -30,8 +30,8 @@
         </select>
         </label>
 
-        <label class="form-element">Mother:
-        <select>
+        <label class="form-element">mother:
+        <select [(ngModel)]="selectedCat.damId" name="damId">
             <option *ngFor="let female of females" value={{female.id}}>
               {{female.name}}
             </option>
@@ -41,11 +41,3 @@
         <button type="submit" >save</button>    
     </form>
 </div>
-birthday: Date;
-gender: Gender;
-colour: string;
-sireId: number;
-damId: number;
-title: string;
-breed: string;
-photoLink: string;
