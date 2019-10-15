@@ -23,16 +23,16 @@
             <input [(ngModel)]="selectedCat.birthday" name="birthday" required>
         </label>
         <label class="form-element">Father:
-        <select (change)="changeFather($event.target.value)">
-            <option *ngFor="let male of males" value={{male.name}}>
+        <select [(ngModel)]="selectedCat.sireId" name="sireId">
+            <option *ngFor="let male of males" value={{male.id}}>
               {{male.name}}
             </option>
         </select>
         </label>
 
         <label class="form-element">Mother:
-        <select (change)="changeMother($event.target.value)">
-            <option *ngFor="let female of females" value={{female.name}}>
+        <select>
+            <option *ngFor="let female of females" value={{female.id}}>
               {{female.name}}
             </option>
         </select>

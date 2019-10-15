@@ -31,12 +31,20 @@ export class UpdateCatComponent implements OnInit {
 
   fillInGenders()
   {
+/* console.log("cat=>cat.gender.toString() === Gender.Male.toString()", this.cats[0].gender.toString() === Gender.Male.toString())
+console.log("cat.gender=",this.cats[0].gender);
+console.log("Gender.Male=",Gender.Male); */
+
+
     this.females =this.cats.filter(cat=>Gender[cat.gender] === 1);
     this.males =this.cats.filter(cat=>Gender[cat.gender] === 0);
+
   }
 
   onSelect(cat: Cat): void {
     this.selectedCat = cat;
     console.log(this.males);
   }
+
+  
 }
