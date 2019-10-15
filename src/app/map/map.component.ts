@@ -54,6 +54,7 @@ export class MapComponent implements OnInit {
   }
 
   public getMarkerPopupContent(cattery: CatteryInfo):string {
+    console.log(cattery)
     return `<h4>Cattery ${cattery.name}</h4>Website: <a href='${cattery.website}' target="_blank">${cattery.website}</a>
     <p>Contact: <a href='mailto:${cattery.contactInfo}'>${cattery.contactInfo}</a></p>`;
 }

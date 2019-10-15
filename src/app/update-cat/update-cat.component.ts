@@ -29,8 +29,6 @@ export class UpdateCatComponent implements OnInit {
   }
 
   getCatsAsClass():void {
-
-
     this.catService.getCats()
         .subscribe({
           next:cats => this.catsJSON = cats,
@@ -38,29 +36,26 @@ export class UpdateCatComponent implements OnInit {
         });
   }
   
-  setCatsAsClass()
-  {
-            this.catsJSON.forEach(catJSON => {
-              this.cats.push(new Cat(catJSON.id,
-                catJSON.name,
-                catJSON.birthday,
-                catJSON.gender,
-                catJSON.colour,
-                catJSON.sireId,
-                catJSON.damId,
-                catJSON.title,
-                catJSON.breed,
-                catJSON.photoLink))
-            });
+  setCatsAsClass() {
+    this.catsJSON.forEach(catJSON => {
+      this.cats.push(new Cat(catJSON.id,
+        catJSON.name,
+        catJSON.birthday,
+        catJSON.gender,
+        catJSON.colour,
+        catJSON.sireId,
+        catJSON.damId,
+        catJSON.title,
+        catJSON.breed,
+        catJSON.photoLink))
+    });
 
-            this.females =this.cats.filter(cat=>cat.gender == Gender.Female);
-            this.males =this.cats.filter(cat=>cat.gender == Gender.Male);
-    }
-  
-  onSelect(cat: Cat): void {
-    this.selectedCat = cat;
-    console.log(this.males);
+    this.females = this.cats.filter(cat => cat.gender == Gender.Female);
+    this.males = this.cats.filter(cat => cat.gender == Gender.Male);
   }
 
-  
+  onSelect(cat: Cat): void {
+    this.selectedCat = cat;
+    console.log(this.selectedCat);
+  }
 }
