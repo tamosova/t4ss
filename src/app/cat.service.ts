@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class CatService {
   private catsUrl = 'assets/cats.json';
-  private catsJSON;
+ 
 
   constructor(private httpClient:HttpClient) { }
 
@@ -24,27 +24,5 @@ export class CatService {
     map((cats: Cat[]) => cats.find(cat => cat.id === id)));
 }
 
-getCatsAsClass(): Cat[] {
-
-  let catsAsClass: Cat[];
-  this.getCats()
-      .subscribe({
-        next:cats => this.catsJSON = cats,
-        complete: () =>
-          this.catsJSON.array.forEach(catJSON => {
-            catsAsClass.push(new Cat(catJSON.id,
-              catJSON.name,
-              catJSON.birthday,
-              catJSON.gender,
-              catJSON.colour,
-              catJSON.sireId,
-              catJSON.damId,
-              catJSON.title,
-              catJSON.breed,
-              catJSON.photoLink))
-          })
-        });
-
-  return catsAsClass;
 }
-}
+
