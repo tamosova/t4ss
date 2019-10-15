@@ -1,1 +1,51 @@
-<p>update-cat works!</p>
+<input [(ngModel)]="searchText" placeholder="name">
+
+<ul>
+  <li *ngFor="let cat of cats | filter : searchText" (click)="onSelect(cat)">
+    {{cat.name}}
+  </li>
+</ul>
+<div>
+    <form *ngIf="selectedCat"  ngNativeValidate (ngSubmit)="save()" >
+        <label class="form-element">name:
+            <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" required/>
+        </label>
+    
+        <label class="form-element">title:
+            <input [(ngModel)]="selectedCat.title" placeholder="title"  name="title" />
+        </label>
+
+        <label class="form-element">colour:
+            <input [(ngModel)]="selectedCat.colour" placeholder="colour" name="colour" required/>
+        </label> 
+
+        <label class="form-element">birthday:
+            <input [(ngModel)]="selectedCat.birthday" name="birthday" required>
+        </label>
+        <label class="form-element">Father:
+        <select (change)="changeFather($event.target.value)">
+            <option *ngFor="let male of males" value={{male.name}}>
+              {{male.name}}
+            </option>
+        </select>
+        </label>
+
+        <label class="form-element">Mother:
+        <select (change)="changeMother($event.target.value)">
+            <option *ngFor="let female of females" value={{female.name}}>
+              {{female.name}}
+            </option>
+        </select>
+        </label>
+
+        <button type="submit" >save</button>    
+    </form>
+</div>
+birthday: Date;
+gender: Gender;
+colour: string;
+sireId: number;
+damId: number;
+title: string;
+breed: string;
+photoLink: string;

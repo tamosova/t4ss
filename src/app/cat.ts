@@ -1,4 +1,4 @@
-enum Gender {Male, Female}
+export enum Gender {Male, Female}
 
 export class Cat {
     id: number;
