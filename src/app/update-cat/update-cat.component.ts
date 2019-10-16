@@ -15,47 +15,26 @@ export class UpdateCatComponent implements OnInit {
   searchText:string;
   males:Cat[] =[];
   females:Cat[] =[];
+  filtered = false;
 
   constructor(private catService: CatService) { }
 
   ngOnInit() {
-    this.getCatsAsClass();
+   this.getCats();
   }
 
   getCats(): void {
-    this.catService.getCats();
-    this.females =this.cats.filter(cat=>cat.gender === Gender.Female);
-    this.males =this.cats.filter(cat=>cat.gender === Gender.Female);
-  }
-
-  getCatsAsClass():void {
-    this.catService.getCats()
-        .subscribe({
-          next:cats => this.catsJSON = cats,
-          complete: () => this.setCatsAsClass()
-        });
-  }
-  
-  setCatsAsClass() {
-    this.catsJSON.forEach(catJSON => {
-      this.cats.push(new Cat(catJSON.id,
-        catJSON.name,
-        catJSON.birthday,
-        catJSON.gender,
-        catJSON.colour,
-        catJSON.sireId,
-        catJSON.damId,
-        catJSON.title,
-        catJSON.breed,
-        catJSON.photoLink))
-    });
-
-    this.females = this.cats.filter(cat => cat.gender == Gender.Female);
-    this.males = this.cats.filter(cat => cat.gender == Gender.Male);
+    this.cats = this.catService.getCatsAsClass();
   }
 
   onSelect(cat: Cat): void {
-    this.selectedCat = cat;
-    console.log(this.selectedCat);
+    if (!this.filtered)
+{
+    this.females =this.cats.filter(cat=>cat.gender === Gender.Female);
+    this.males =this.cats.filter(cat=>cat.gender === Gender.Male);
+    this.filtered = true;
+  }
+  this.selectedCat = cat;
+  console.log(this.selectedCat);
   }
 }

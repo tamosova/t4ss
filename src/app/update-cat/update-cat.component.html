@@ -2,7 +2,7 @@
 
 <ul>
   <li *ngFor="let cat of cats | filter : searchText" (click)="onSelect(cat)">
-    {{cat.name}}
+   <a> {{cat.name}}</a>
   </li>
 </ul>
 <div>
@@ -12,7 +12,7 @@
         </label>
 
         <div class="form-group form-element">
-                <label>Gender: {{selectedCat.gender}}</label> 
+                <label>Gender: &nbsp;</label> 
             
                 <label class="radio-inline">
                     <input type="radio" name="radiogender" [value]='0' [(ngModel)]="selectedCat.gender">Male
@@ -22,7 +22,7 @@
                     <input type="radio" name="radiogender" [value]='1' [(ngModel)]="selectedCat.gender">Female
                 </label>
             
-            </div>
+        </div>
     
         <label class="form-element">title:
             <input [(ngModel)]="selectedCat.title" placeholder="title"  name="title" />
@@ -50,6 +50,18 @@
             </option>
         </select>
         </label>
+        <div class="form-element">
+                <label >Breed: {{selectedCat.breed}} &nbsp;</label> 
+            
+                <label class="radio-inline">
+                    <input type="radio" name="radiobreed" value='KBL' [(ngModel)]="selectedCat.breed">KBL
+                </label>
+            
+                <label class="radio-inline">
+                    <input type="radio" name="radiobreed" value='KBS' [(ngModel)]="selectedCat.breed">KBS
+                </label>          
+        </div>
+       
 
         <button type="submit" >save</button>    
     </form>

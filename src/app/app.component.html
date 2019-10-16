@@ -8,7 +8,7 @@
     <a class="nav-item nav-link" routerLink="catteries-map">Find Cattery</a>
     <a class="nav-item nav-link" routerLink="login" *ngIf="!currentUser">Login</a>
     <a class="nav-item nav-link" routerLink="update" *ngIf="currentUser">Update Cat Info</a>
-    <a class="nav-item nav-link" (click)="logout()" *ngIf="currentUser">Logout</a>
+    <a class="nav-item nav-link" routerLink="#" (click)="logout()" *ngIf="currentUser">Logout</a>
   </nav>
   <router-outlet class="content"></router-outlet>
 </body>

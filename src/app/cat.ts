@@ -12,25 +12,18 @@ export class Cat {
     breed: string;
     photoLink: string;
 
-    constructor( id: number,
-      name: string,
-      birthday: Date,
-      gender: string,
-      colour: string,
-      sireId: number,
-      damId: number,
-      title: string,
-      breed: string,
-      photoLink: string){
-        this.id=id,
-        this.name = name;
-        this.birthday = birthday;
-        this.gender = Gender[gender];
-        this.colour = colour;
-        this.sireId = sireId;
-        this.damId = damId;
-        this.title = title;
-        this.breed = breed;
-        this.photoLink = photoLink;
-      }
+
+constructor(object)
+{
+  this.id=object.id,
+        this.name = object.name;
+        this.birthday = object.birthday;
+        this.gender = Gender[<string>object.gender];
+        this.colour = object.colour;
+        this.sireId = object.sireId;
+        this.damId = object.damId;
+        this.title = object.title;
+        this.breed = object.breed;
+        this.photoLink = object.photoLink;
+}
   }

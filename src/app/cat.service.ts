@@ -9,13 +9,31 @@ import { map } from 'rxjs/operators';
 })
 export class CatService {
   private catsUrl = 'assets/cats.json';
- 
+  catsJSON;
+  catsAsClass: Cat[] =[];
 
   constructor(private httpClient:HttpClient) { }
 
   getCats(): Observable<Cat[]> {
 
     return this.httpClient.get<Cat[]>(this.catsUrl);
+  }
+
+  getCatsAsClass(): Cat[] {
+    this.getCats()
+    .subscribe({
+      next:cats => this.catsJSON = cats,
+      complete: () => {this.catsJSON.forEach(catJSON => {
+        this.catsAsClass.push(new Cat(catJSON))
+      });}
+    });
+    return this.catsAsClass;
+  }
+
+  setCatsAsClass() {
+    this.catsJSON.forEach(catJSON => {
+      this.catsAsClass.push(new Cat(catJSON))
+    });
   }
 
   getCat(id: number): Observable<Cat> {
