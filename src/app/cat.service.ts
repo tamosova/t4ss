@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CatService {
-  private catsUrl = 'assets/cats.json';
+  private catsUrl = 'https://kurbobs.benn0.be/cats';
   catsJSON;
   catsAsClass: Cat[] =[];
 

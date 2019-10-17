@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
   })
 export class MarkerCatteryService {
-  private catteriesUrl = 'assets/catteries.json';
+  private catteriesUrl = 'https://kurbobs.benn0.be/catteries';
   constructor(private httpClient:HttpClient) { }
 
   getCatteries(): Observable<CatteryInfo[]> {
