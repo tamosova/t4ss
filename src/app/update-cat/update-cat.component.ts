@@ -30,8 +30,8 @@ export class UpdateCatComponent implements OnInit {
   onSelect(cat: Cat): void {
     if (!this.filtered)
 {
-    this.females =this.cats.filter(cat=>cat.gender === Gender.Female);
-    this.males =this.cats.filter(cat=>cat.gender === Gender.Male);
+    this.females =this.cats.filter(cat=>cat.gender === Gender.Female || cat.id == 0 || cat.id == -1);
+    this.males =this.cats.filter(cat=>cat.gender === Gender.Male|| cat.id == 0 || cat.id == -1);
     this.filtered = true;
   }
   this.selectedCat = cat;

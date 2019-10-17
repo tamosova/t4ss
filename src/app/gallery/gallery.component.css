@@ -1,12 +1,15 @@
 .gallery {
     display:flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 .gallery-element {
     margin: 1em;
 }
 .gallery-element img{
-    display:block
+    display:block;
+    height: 150px;
+    cursor: pointer;
 }
 .gallery-element a{
     display:block;

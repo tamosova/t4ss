@@ -1,7 +1,7 @@
 <input [(ngModel)]="searchText" placeholder="name">
 
 <ul>
-  <li *ngFor="let cat of cats | filter : searchText">
+  <li *ngFor="let cat of cats | slice:2 | filter : searchText">
     <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
   </li>
 </ul>
