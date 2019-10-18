@@ -10,27 +10,18 @@ import { CatService } from '@app/cat.service';
 export class UpdateCatComponent implements OnInit {
 
   private catsJSON;
-  cats:Cat[] =[];
+  cats: Cat[] = [];
   selectedCat: Cat;
-  searchText:string;
-  males:Cat[] =[];
-  females:Cat[] =[];
+  searchText: string;
+  males: Cat[] = [];
+  females: Cat[] = [];
   filtered = false;
-  noInfoCat = new Cat({
-    "id": -1, "name": "No information", "birthday": "",
-    "gender": "", "colour": "", "sireId": "-1", "damId": "-1", "title": "",
-    "breed": "", "photoLink": ""
-  })
-  unknownCat = new Cat({
-    "id": 0, "name": "Unknown", "birthday": "",
-    "gender": "", "colour": "", "sireId": "0", "damId": "0", "title": "",
-    "breed": "", "photoLink": ""
-  })
+
 
   constructor(private catService: CatService) { }
 
   ngOnInit() {
-   this.getCats();
+    this.getCats();
   }
 
   getCats(): void {
@@ -38,13 +29,16 @@ export class UpdateCatComponent implements OnInit {
   }
 
   onSelect(cat: Cat): void {
-    if (!this.filtered)
-{
-    this.females =this.cats.filter(cat=>cat.gender === Gender.Female || cat.id == 0 || cat.id == -1);
-    this.males =this.cats.filter(cat=>cat.gender === Gender.Male|| cat.id == 0 || cat.id == -1);
-    this.filtered = true;
-  }
-  this.selectedCat = cat;
-  console.log(this.selectedCat);
+    if (!this.filtered) {
+      this.females = this.cats.filter(cat => cat.gender === Gender.Female);
+      this.males = this.cats.filter(cat => cat.gender === Gender.Male);
+      this.females.push(Cat.unknownCat);
+      this.females.push(Cat.noInfoCat);
+      this.males.push(Cat.unknownCat);
+      this.males.push(Cat.noInfoCat);
+      this.filtered = true;
+    }
+    this.selectedCat = cat;
+    console.log(this.selectedCat);
   }
 }

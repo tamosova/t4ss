@@ -12,6 +12,18 @@ export class Cat {
   breed: string;
   photoLink: string;
 
+  static unknownCat =  new Cat({
+    "id": -1, "name": "Unknown", "birthday": "",
+    "gender": "", "colour": "", "sireId": -1, "damId": -1, "title": "",
+    "breed": "", "photoLink": ""
+  })
+
+  static noInfoCat =  new Cat({
+    "id": 0, "name": "Unknown", "birthday": "",
+    "gender": "", "colour": "", "sireId": 0, "damId": 0, "title": "",
+    "breed": "", "photoLink": ""
+  })
+
 
   constructor(object) {
     this.id = object.id,
