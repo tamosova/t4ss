@@ -45,5 +45,9 @@
     { "id": 10, "name": "Brus Daniel Plush & Bob", "birthday": "", 
         "gender":"Male", "colour": "n09", "sireId": "", "damId":"", "title": "GICH (WCF)",
          "breed": "KBL", "photoLink":"10.jpg"
+    },
+    { "id": 11, "name": "Encanto de Fiera", "birthday": "2006-01-06T12:00:00.000Z", 
+        "gender":1, "colour": "f03", "sireId": "", "damId":"", "title": "GIC.Fife; In.Ch. WCF",
+         "breed": "KBL", "photoLink":"11.jpg"
     }
   ]

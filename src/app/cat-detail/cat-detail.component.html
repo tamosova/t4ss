@@ -1,11 +1,29 @@
-<div *ngIf="cat">
-    <h2>{{cat.name | uppercase}}</h2>
-    <h3>Date of birth: {{cat.birthday | date}}</h3>
-    <img src="assets/cats-photos/fullsize/{{cat.photoLink}}">
+<div *ngIf="cat" class="cat-info">
+  <h2>{{cat.name | uppercase}}</h2>
 
-    <div *ngIf="pedigree" class = "pedigreeClass">
-        <h2>Pedigree</h2>
-        <div [innerHTML] ="pedigree"></div>
-    </div>
-    <button (click)="goBack()">go back</button>
+  <div class="birthday"> Date of birth:
+
+    <ng-container *ngIf="cat.birthday.getFullYear() != 0; then birthdayNotNull; else birthdayIsNull">
+    </ng-container>
+
+    <ng-template #birthdayNotNull>
+      <div class="date">
+        {{cat.birthday | date: 'dd/MM/yyyy'}}
+      </div>
+    </ng-template>
+    <ng-template #birthdayIsNull>
+      <div class="date">
+        unknown
+      </div>
+    </ng-template>
+  </div>
+  <div *ngIf="cat.photoLink">
+    <img src="assets/cats-photos/fullsize/{{cat.photoLink}}">
+  </div>
+  <div *ngIf="pedigree" class="pedigreeClass">
+    <h2>Pedigree</h2>
+    <div [innerHTML]="pedigree"></div>
+  </div>
+
+  <button (click)="goBack()">go back</button>
 </div>

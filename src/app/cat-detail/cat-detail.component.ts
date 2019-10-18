@@ -15,33 +15,40 @@ export class CatDetailComponent implements OnInit {
   cats: Cat[];
   pedigree: string;
   pedigreeDepth = 4;
+  noInfoCat = new Cat({
+    "id": -1, "name": "No information", "birthday": "",
+    "gender": "", "colour": "", "sireId": "-1", "damId": "-1", "title": "",
+    "breed": "", "photoLink": ""
+  })
+  unknownCat = new Cat({
+    "id": 0, "name": "Unknown", "birthday": "",
+    "gender": "", "colour": "", "sireId": "0", "damId": "0", "title": "",
+    "breed": "", "photoLink": ""
+  })
 
   constructor(private route: ActivatedRoute,
     private catService: CatService,
     private location: Location) { }
 
   ngOnInit() {
-    this.getCats();
+    this.getCatDetails();
   }
 
   buildPedigree(cat: Cat, depth: number): string {
-    let sire = this.getCat(cat.sireId);
-    let dam = this.getCat(cat.damId);
+    let sire = cat.sireId ? this.getCat(cat.sireId) : this.noInfoCat;
+    let dam = cat.damId ? this.getCat(cat.damId) : this.noInfoCat;
     let sireImg = "";
     let damImg = "";
 
-    if (sire.photoLink)
-    {
-        sireImg = `<img src='assets/cats-photos/fullsize/${sire.photoLink}' alt='photo of ${sire.name}' width='80%'>`
+    if (sire.photoLink) {
+      sireImg = `<img src='assets/cats-photos/fullsize/${sire.photoLink}' alt='photo of ${sire.name}' width='80%'>`
     }
-    if (dam.photoLink)
-    {
+    if (dam.photoLink) {
       damImg = `<img src='assets/cats-photos/fullsize/${dam.photoLink}' alt='photo of ${dam.name}' width='80%'>`
     }
-    console.log(cat)
     if (depth == 1) {
       return `<table width=100% border='1'>
-      <tr><td width=${100/this.pedigreeDepth}% align='center'>${sire.title} ${sire.name} <br>
+      <tr><td width=${100 / this.pedigreeDepth}% align='center'>${sire.title} ${sire.name} <br>
        (${sire.colour}) <br>
       ${sireImg} 
       </td></tr>
@@ -50,35 +57,29 @@ export class CatDetailComponent implements OnInit {
     }
     else {
       return `<table width=100% border='1' align='center'>
-      <tr><td width=${100/this.pedigreeDepth}% align='center'>${sire.title} ${sire.name} <br> (${sire.colour})<br>
+      <tr><td width=${100 / this.pedigreeDepth}% align='center'>${sire.title} ${sire.name} <br> (${sire.colour})<br>
       ${sireImg} 
       
-</td><td align='center'>${this.buildPedigree(sire, depth-1)}</td></tr>
-      <tr><td width=${100/this.pedigreeDepth}% align='center'>${dam.title} ${dam.name} <br> (${dam.colour})<br>
-      ${damImg} </td><td align='center'>${this.buildPedigree(dam, depth-1)}</td></tr>
+      </td><td align='center'>${this.buildPedigree(sire, depth - 1)}</td></tr>
+      <tr><td width=${100 / this.pedigreeDepth}% align='center'>${dam.title} ${dam.name} <br> (${dam.colour})<br>
+      ${damImg} </td><td align='center'>${this.buildPedigree(dam, depth - 1)}</td></tr>
       </table>`;
     }
   }
 
   getCat(id: number) {
-    return this.cats.find(element => element.id == id)
+    return new Cat(this.cats.find(element => element.id == id));
   }
 
-  /*  getCat() : void {
-     const id = +this.route.snapshot.paramMap.get('id');
-     this.catService.getCat(id)
-       .subscribe(cat => {
-         this.cat = cat;
-       });
-   }
-  */
-  getCats(): void {
+  getCatDetails(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.catService.getCats()
       .subscribe({
         next: cats => this.cats = cats,
         complete: () => {
-        this.cat = this.getCat(id);
+          this.cat = this.getCat(id);
+          this.cats.push(this.noInfoCat);
+          this.cats.push(this.unknownCat);
           this.pedigree = this.buildPedigree(this.cat, this.pedigreeDepth);
         }
       })

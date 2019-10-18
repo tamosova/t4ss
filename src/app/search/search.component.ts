@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cat } from '@app/cat';
 import { CatService } from '@app/cat.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +15,8 @@ export class SearchComponent implements OnInit {
   constructor(private catService: CatService) { }
 
   ngOnInit() {
-    this.getCats();
+   // this.getCats();
+   this.cats=this.catService.getCatsAsClass();
   }
 
   getCats(): void {

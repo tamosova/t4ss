@@ -7,6 +7,7 @@ import { CatDetailComponent } from './cat-detail/cat-detail.component'
 import { MapComponent } from './map/map.component';
 import { LoginComponent } from './login/login.component';
 import { UpdateCatComponent } from './update-cat/update-cat.component';
+import { AddCatComponent } from './add-cat/add-cat.component';
 
 const appRoutes: Routes = [
   { path: 'home', 
@@ -39,6 +40,10 @@ const appRoutes: Routes = [
   {
     path: 'update',
     component: UpdateCatComponent
+  },
+  {
+    path: 'add',
+    component: AddCatComponent
   }
 ];
 export default appRoutes;

@@ -4,3 +4,13 @@ button {
 .pedigreeClass{
     width:70%;
 }
+.cat-info img{
+    width:600px;
+    display: block
+}
+.birthday {
+    font-size: 2em;
+}
+.date{
+    display: inline
+}

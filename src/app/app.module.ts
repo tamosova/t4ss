@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UpdateCatComponent } from './update-cat/update-cat.component';
 import { FilterPipe} from './filter.pipe';
+import { AddCatComponent } from './add-cat/add-cat.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FilterPipe} from './filter.pipe';
     MapComponent,
     LoginComponent,
     UpdateCatComponent,
-    FilterPipe
+    FilterPipe,
+    AddCatComponent
   ],
   imports: [
     BrowserModule,
