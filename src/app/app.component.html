@@ -9,6 +9,7 @@
     <a class="nav-item nav-link" routerLink="login" *ngIf="!currentUser">Login</a>
     <a class="nav-item nav-link" routerLink="add" *ngIf="currentUser">Add Cat</a>
     <a class="nav-item nav-link" routerLink="update" *ngIf="currentUser">Update Cat Info</a>
+    <a class="nav-item nav-link" routerLink="delete" *ngIf="currentUser">Delete Cat</a>
     <a class="nav-item nav-link" routerLink="#" (click)="logout()" *ngIf="currentUser">Logout</a>
   </nav>
   <router-outlet class="content"></router-outlet>

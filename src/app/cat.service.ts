@@ -25,6 +25,7 @@ export class CatService {
     return this.httpClient.get<Cat[]>(this.catsUrl);
   }
 
+
   getCatsAsClass(): Cat[] {
     this.catsAsClass = [];
     this.getCats()
@@ -32,8 +33,14 @@ export class CatService {
         next: cats => this.catsJSON = cats,
         complete: () => {
           this.catsJSON.forEach(catJSON => {
-            this.catsAsClass.push(new Cat(catJSON))
+            this.catsAsClass.push(new Cat(catJSON));
           });
+          this.catsAsClass.sort(function(cat1, cat2){
+            if(cat1.name < cat2.name) { return -1; }
+            if(cat1.name > cat2.name) { return 1; }
+            return 0;
+        })
+        
         }
       });
     return this.catsAsClass;
@@ -47,7 +54,15 @@ export class CatService {
 
   addCat(cat: Cat): Observable<Cat> {
     console.log("adding", cat);
-    return this.httpClient.post<Cat>(this.catsUrl+'/add', cat, this.httpOptions)
+    return this.httpClient.post<Cat>(this.catsUrl + '/add', cat, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  deleteCat(id: number): Observable<{}> {
+    console.log("deleting", id);
+    return this.httpClient.delete(`${this.catsUrl}/${id}`, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );

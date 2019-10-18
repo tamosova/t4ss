@@ -16,6 +16,16 @@ export class UpdateCatComponent implements OnInit {
   males:Cat[] =[];
   females:Cat[] =[];
   filtered = false;
+  noInfoCat = new Cat({
+    "id": -1, "name": "No information", "birthday": "",
+    "gender": "", "colour": "", "sireId": "-1", "damId": "-1", "title": "",
+    "breed": "", "photoLink": ""
+  })
+  unknownCat = new Cat({
+    "id": 0, "name": "Unknown", "birthday": "",
+    "gender": "", "colour": "", "sireId": "0", "damId": "0", "title": "",
+    "breed": "", "photoLink": ""
+  })
 
   constructor(private catService: CatService) { }
 

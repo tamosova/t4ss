@@ -1,1 +1,62 @@
-<button (click)="addCat()">save</button>
+<div *ngIf="newCat">
+    <form ngNativeValidate (ngSubmit)="save()">
+        <label class="form-element">name:
+            <input [(ngModel)]="newCat.name" placeholder="name" name="name" required (click)="edited()" />
+        </label>
+
+        <div class="form-group form-element">
+            <label>Gender: &nbsp;</label>
+
+            <label class="radio-inline">
+                <input type="radio" name="radiogender" [value]='0' [(ngModel)]="newCat.gender">Male
+            </label>
+
+            <label class="radio-inline">
+                <input type="radio" name="radiogender" [value]='1' [(ngModel)]="newCat.gender">Female
+            </label>
+
+        </div>
+
+        <label class="form-element">title:
+            <input [(ngModel)]="newCat.title" placeholder="title" name="title" />
+        </label>
+
+        <label class="form-element">colour:
+            <input [(ngModel)]="newCat.colour" placeholder="colour" name="colour" required />
+        </label>
+
+        <label class="form-element">birthday:
+            <input [ngModel]="newCat.birthday | date:'yyyy-MM-dd'" name="birthday" type="date" class="datepicker"
+                (ngModelChange)="newCat.birthday = $event">
+        </label>
+        <label class="form-element">father:
+            <select [(ngModel)]="newCat.sireId" name="sireId">
+                <option *ngFor="let male of males" value={{male.id}}>
+                    {{male.name}}
+                </option>
+            </select>
+        </label>
+
+        <label class="form-element">mother:
+            <select [(ngModel)]="newCat.damId" name="damId">
+                <option *ngFor="let female of females" value={{female.id}}>
+                    {{female.name}}
+                </option>
+            </select>
+        </label>
+        <div class="form-element">
+            <label>Breed: {{newCat.breed}} &nbsp;</label>
+
+            <label class="radio-inline">
+                <input type="radio" name="radiobreed" value='KBL' [(ngModel)]="newCat.breed">KBL
+            </label>
+
+            <label class="radio-inline">
+                <input type="radio" name="radiobreed" value='KBS' [(ngModel)]="newCat.breed">KBS
+            </label>
+        </div>
+
+
+        <button type="submit" (click)="addCat()">save</button>
+    </form>
+</div>

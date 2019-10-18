@@ -49,5 +49,25 @@
     { "id": 11, "name": "Encanto de Fiera", "birthday": "2006-01-06T12:00:00.000Z", 
         "gender":1, "colour": "f03", "sireId": "", "damId":"", "title": "GIC.Fife; In.Ch. WCF",
          "breed": "KBL", "photoLink":"11.jpg"
+    },
+    { "id": 12, "name": "Lel Kroshka Flak", "birthday": "0000-00-00 00:00:00", 
+        "gender":0, "colour": "d 22", "sireId": "", "damId":"", "title": "WCH WCF",
+         "breed": "KBL", "photoLink":"12.jpg"
+    },
+    { "id": 13, "name": "Anisia Benefis Bob", "birthday": "0000-00-00 00:00:00", 
+        "gender":0, "colour": "d 22", "sireId": "1", "damId":"", "title": "WCH WCF",
+         "breed": "KBL", "photoLink":"13.jpg"
+    },
+    { "id": 14, "name": "Baileys Be Original SuperBob*RU", "birthday": "0000-00-00 00:00:00", 
+        "gender":0, "colour": "d 03 23", "sireId": "", "damId":"7", "title": "SC FIFe",
+         "breed": "KBL", "photoLink":"14.jpg"
+    },
+    { "id": 15, "name": "Sunshine Reggae Free Hunter*RU", "birthday": "2015-08-29 00:00:00", 
+        "gender":0, "colour": "d 03 23", "sireId": "14", "damId":"4", "title": "ICh. FIFe",
+         "breed": "KBL", "photoLink":"15.jpg"
+    },
+    { "id": 16, "name": "Bayaderka Free Hunter", "birthday": "2008-04-22 00:00:00", 
+        "gender":"Female", "colour": "f 03 23", "sireId": "5", "damId":"11", "title": "ICh. FIFe",
+         "breed": "KBL", "photoLink":"16.jpg"
     }
   ]
