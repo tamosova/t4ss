@@ -1,5 +1,17 @@
 <div *ngIf="cat" class="cat-info">
-  <h2>{{cat.name | uppercase}}</h2>
+  <div class=title>
+    <div class="title-text">
+      {{cat.name | uppercase}}
+    </div>
+    <div>
+      <img src="assets/icons/{{cat.gender}}.png" alt="Gender[cat.gender]" class="title-photo">
+    </div>
+  </div>
+
+  <div *ngIf="cat.photoLink" class="cat-photo">
+    <img src="assets/cats-photos/fullsize/{{cat.photoLink}}">
+  </div>
+
 
   <div class="birthday"> Date of birth:
 
@@ -11,17 +23,16 @@
         {{cat.birthday | date: 'dd/MM/yyyy'}}
       </div>
     </ng-template>
+
     <ng-template #birthdayIsNull>
       <div class="date">
-        unknown
       </div>
     </ng-template>
+
   </div>
-  <div *ngIf="cat.photoLink">
-    <img src="assets/cats-photos/fullsize/{{cat.photoLink}}">
-  </div>
+
   <div *ngIf="pedigree" class="pedigreeClass">
-    <h2>Pedigree</h2>
+    <div class="pedigree-title">Pedigree</div>
     <div [innerHTML]="pedigree"></div>
   </div>
 

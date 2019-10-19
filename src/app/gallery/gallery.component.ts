@@ -19,7 +19,7 @@ export class GalleryComponent implements OnInit {
   }
 
   getCats(): void {
-    this.catService.getCats()
+    this.catService.getAllCats()
       .subscribe(cats => this.cats = cats);
   }
 

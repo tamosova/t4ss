@@ -35,7 +35,7 @@ export class AddCatComponent implements OnInit {
    }
  
    getCats(): void {
-     this.cats = this.catService.getCatsAsClass().sort(function (cat1,cat2) {
+     this.cats = this.catService.getCatsAsClassSortedByName().sort(function (cat1,cat2) {
        console.log(cat1.name, cat2.name);
        var textA = cat1.name.toUpperCase();
        var textB = cat2.name.toUpperCase();
@@ -47,14 +47,18 @@ export class AddCatComponent implements OnInit {
   addCat() {
     this.catService.addCat(this.newCat).subscribe();
   }
-  edited(): void {
-    console.log("edited")
+  onSelect(): void {
+/*     console.log("edited")
     if (!this.filtered)
 {
-    this.females =this.cats.filter(cat=>cat.gender === Gender.Female || cat.id == 0 || cat.id == -1);
-    this.males =this.cats.filter(cat=>cat.gender === Gender.Male|| cat.id == 0 || cat.id == -1);
+  this.females = this.cats.filter(cat => cat.gender === Gender.Female);
+  this.males = this.cats.filter(cat => cat.gender === Gender.Male);
+  this.females.push(Cat.unknownCat);
+  this.females.push(Cat.noInfoCat);
+  this.males.push(Cat.unknownCat);
+  this.males.push(Cat.noInfoCat);
     this.filtered = true;
-  }
+  } */
   }
 
 }

@@ -9,7 +9,6 @@ import { CatService } from '@app/cat.service';
 })
 export class UpdateCatComponent implements OnInit {
 
-  private catsJSON;
   cats: Cat[] = [];
   selectedCat: Cat;
   searchText: string;
@@ -25,7 +24,7 @@ export class UpdateCatComponent implements OnInit {
   }
 
   getCats(): void {
-    this.cats = this.catService.getCatsAsClass();
+    this.cats = this.catService.getCatsAsClassSortedByName();
   }
 
   onSelect(cat: Cat): void {
@@ -40,5 +39,10 @@ export class UpdateCatComponent implements OnInit {
     }
     this.selectedCat = cat;
     console.log(this.selectedCat);
+  }
+
+  save(): void {
+    this.catService.updateCat(this.selectedCat);
+    this.selectedCat = null;
   }
 }

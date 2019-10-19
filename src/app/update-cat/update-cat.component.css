@@ -2,3 +2,9 @@
 {
     display: block
 }
+.edit-cat-details{
+    display: inline;
+}
+.search-component{
+    display: inline
+}

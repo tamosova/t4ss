@@ -1,16 +1,45 @@
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+.title-text{
+    font-weight: bolder;
+    font-size: 2em;
+    text-align: center;
+}
+.title-photo{
+  max-width: 100%;
+  height: auto;
+}
+
 button {
     display: block
 }
 .pedigreeClass{
+    text-align: center;
     width:70%;
+    margin-left: auto;
+    margin-right: auto;
 }
-.cat-info img{
-    width:600px;
-    display: block
-}
+
 .birthday {
-    font-size: 2em;
+    font-size: 1.5em;
+    text-align: center;
 }
 .date{
     display: inline
+}
+
+.cat-photo{
+    width: 40%;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pedigree-title{
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
 }

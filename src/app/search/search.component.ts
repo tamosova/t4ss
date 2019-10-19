@@ -9,19 +9,17 @@ import { CatService } from '@app/cat.service';
 })
 export class SearchComponent implements OnInit {
 
-  cats:Cat[] =[];
-  searchText:string;
+  cats: Cat[] = [];
+  searchText: string;
 
   constructor(private catService: CatService) { }
 
   ngOnInit() {
-   // this.getCats();
-   this.cats=this.catService.getCatsAsClass();
+    this.getCats();
   }
 
   getCats(): void {
-    this.catService.getCats()
-      .subscribe(cats => this.cats = cats);
+    this.cats = this.catService.getCatsAsClassSortedByName();
   }
 
 

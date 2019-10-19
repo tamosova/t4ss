@@ -73,7 +73,7 @@ export class CatDetailComponent implements OnInit {
 
   getCatDetails(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.catService.getCats()
+    this.catService.getAllCats()
       .subscribe({
         next: cats => this.cats = cats,
         complete: () => {

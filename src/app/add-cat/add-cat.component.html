@@ -1,7 +1,7 @@
 <div *ngIf="newCat">
     <form ngNativeValidate (ngSubmit)="save()">
         <label class="form-element">name:
-            <input [(ngModel)]="newCat.name" placeholder="name" name="name" required (click)="edited()" />
+            <input [(ngModel)]="newCat.name" placeholder="name" name="name" required  />
         </label>
 
         <div class="form-group form-element">
@@ -30,7 +30,7 @@
                 (ngModelChange)="newCat.birthday = $event">
         </label>
         <label class="form-element">father:
-            <select [(ngModel)]="newCat.sireId" name="sireId">
+            <select [(ngModel)]="newCat.sireId" name="sireId" (click)="onSelect()">
                 <option *ngFor="let male of males" value={{male.id}}>
                     {{male.name}}
                 </option>
@@ -38,7 +38,7 @@
         </label>
 
         <label class="form-element">mother:
-            <select [(ngModel)]="newCat.damId" name="damId">
+            <select [(ngModel)]="newCat.damId" name="damId" (click)="onSelect()">
                 <option *ngFor="let female of females" value={{female.id}}>
                     {{female.name}}
                 </option>
@@ -56,6 +56,9 @@
             </label>
         </div>
 
+        <label class="form-element">photo:
+                <input [(ngModel)]="newCat.photoLink" placeholder="" name="photo" />
+        </label>
 
         <button type="submit" (click)="addCat()">save</button>
     </form>

@@ -20,15 +20,15 @@ export class CatService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCats(): Observable<Cat[]> {
+  getAllCats(): Observable<Cat[]> {
 
     return this.httpClient.get<Cat[]>(this.catsUrl);
   }
 
 
-  getCatsAsClass(): Cat[] {
+  getCatsAsClassSortedByName(): Cat[] {
     this.catsAsClass = [];
-    this.getCats()
+    this.getAllCats()
       .subscribe({
         next: cats => this.catsJSON = cats,
         complete: () => {
@@ -48,7 +48,7 @@ export class CatService {
 
   getCat(id: number): Observable<Cat> {
 
-    return this.getCats().pipe(
+    return this.getAllCats().pipe(
       map((cats: Cat[]) => cats.find(cat => cat.id === id)));
   }
 
@@ -63,6 +63,13 @@ export class CatService {
   deleteCat(id: number): Observable<{}> {
     console.log("deleting", id);
     return this.httpClient.delete(`${this.catsUrl}/${id}`, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  updateCat(cat: Cat): Observable<Cat> {
+    return this.httpClient.put<Cat>(this.catsUrl, cat, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
