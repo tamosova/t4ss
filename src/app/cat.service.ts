@@ -21,13 +21,14 @@ export class CatService {
   constructor(private httpClient: HttpClient) { }
 
   getAllCats(): Observable<Cat[]> {
-
+    
     return this.httpClient.get<Cat[]>(this.catsUrl);
   }
 
 
   getCatsAsClassSortedByName(): Cat[] {
     this.catsAsClass = [];
+    this.catsJSON = [];
     this.getAllCats()
       .subscribe({
         next: cats => this.catsJSON = cats,

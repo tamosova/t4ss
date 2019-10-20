@@ -19,7 +19,7 @@ export class Cat {
   })
 
   static noInfoCat =  new Cat({
-    "id": 0, "name": "Unknown", "birthday": "",
+    "id": 0, "name": "No Information", "birthday": "",
     "gender": "", "colour": "", "sireId": 0, "damId": 0, "title": "",
     "breed": "", "photoLink": ""
   })
@@ -28,7 +28,7 @@ export class Cat {
   constructor(object) {
     this.id = object.id,
     this.name = object.name;
-    this.birthday = (object.birthday != "0000-00-00 00:00:00") ? new Date(object.birthday) : new Date("0000-01-01T00:00:00.000Z");
+    this.birthday = object.birthday ? new Date(object.birthday) : null;
     switch (object.gender) {
       case 0:
       case 1: this.gender = object.gender; break;

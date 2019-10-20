@@ -4,7 +4,8 @@
       {{cat.name | uppercase}}
     </div>
     <div>
-      <img src="assets/icons/{{cat.gender}}.png" alt="Gender[cat.gender]" class="title-photo">
+      <span *ngIf="!cat.gender" class="fa fa-mars"></span>
+      <span *ngIf="cat.gender" class="fa fa-venus"></span>
     </div>
   </div>
 
@@ -15,7 +16,7 @@
 
   <div class="birthday"> Date of birth:
 
-    <ng-container *ngIf="cat.birthday.getFullYear() != 0; then birthdayNotNull; else birthdayIsNull">
+    <ng-container *ngIf="cat.birthday; then birthdayNotNull; else birthdayIsNull">
     </ng-container>
 
     <ng-template #birthdayNotNull>

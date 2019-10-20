@@ -1,0 +1,20 @@
+.form-element
+{
+    display: block
+}
+
+.cat-manage {
+    position: relative;
+}
+
+.cat-manage .actions {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.cats-list {
+    width: 100%;
+}

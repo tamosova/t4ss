@@ -23,6 +23,7 @@ import { UpdateCatComponent } from './update-cat/update-cat.component';
 import { FilterPipe} from './filter.pipe';
 import { AddCatComponent } from './add-cat/add-cat.component';
 import { DeleteCatComponent } from './delete-cat/delete-cat.component';
+import { ManageCatsComponent } from './manage-cats/manage-cats.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { DeleteCatComponent } from './delete-cat/delete-cat.component';
     UpdateCatComponent,
     FilterPipe,
     AddCatComponent,
-    DeleteCatComponent
+    DeleteCatComponent,
+    ManageCatsComponent
   ],
   imports: [
     BrowserModule,

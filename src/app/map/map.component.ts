@@ -43,8 +43,7 @@ export class MapComponent implements OnInit {
           icon: icon({
             iconSize: [ 25, 41 ],
             iconAnchor: [ 13, 41 ],
-            iconUrl: 'marker-icon.png',
-            shadowUrl: 'marker-shadow.png'
+            iconUrl: 'marker-icon.png'
           })
         }
       );

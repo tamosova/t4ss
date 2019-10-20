@@ -1,0 +1,156 @@
+<div class="container">
+    <div class="row">
+        <div *ngIf="cats" class="col-md">
+            <input [(ngModel)]="searchText" placeholder="name">
+            <button type="button" (click)="addCat()">Add cat</button>
+            <ul class="cats-list list-group">
+                <li class="cat-manage list-group-item" *ngFor="let cat of cats| filter : searchText">
+                    <span class="name">{{cat.name}}</span>
+                    <div class="actions">
+                        <button type="button" class="update btn btn-primary btn-sm" (click)="updateCat(cat)">
+                            <span class="fa fa-pencil"></span>
+                        </button>
+                        <button type="button" class="delete btn btn-danger btn-sm"
+                            (click)="alert('Please confirm deletion')">
+                            <span class="fa fa-trash"></span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="addCatForm col-md" *ngIf="newCat">
+            <form ngNativeValidate (ngSubmit)="save()">
+                <label class="form-element">name:
+                    <input [(ngModel)]="newCat.name" placeholder="name" name="name" required />
+                </label>
+
+                <div class="form-group form-element">
+                    <label>Gender: &nbsp;</label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="radiogender" [value]='0' [(ngModel)]="newCat.gender">Male
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="radiogender" [value]='1' [(ngModel)]="newCat.gender">Female
+                    </label>
+
+                </div>
+
+                <label class="form-element">title:
+                    <input [(ngModel)]="newCat.title" placeholder="title" name="title" />
+                </label>
+
+                <label class="form-element">colour:
+                    <input [(ngModel)]="newCat.colour" placeholder="colour" name="colour" required />
+                </label>
+
+                <label class="form-element">birthday:
+                    <input [ngModel]="newCat.birthday ? (newCat.birthday | date:'yyyy-MM-dd') : null" name="birthday"
+                        type="date" class="datepicker" (ngModelChange)="newCat.birthday = $event">
+                </label>
+                <label class="form-element">father:
+                    <select [(ngModel)]="newCat.sireId" name="sireId" (click)="onSelect()">
+                        <option *ngFor="let male of males" value={{male.id}}>
+                            {{male.name}}
+                        </option>
+                    </select>
+                </label>
+
+                <label class="form-element">mother:
+                    <select [(ngModel)]="newCat.damId" name="damId" (click)="onSelect()">
+                        <option *ngFor="let female of females" value={{female.id}}>
+                            {{female.name}}
+                        </option>
+                    </select>
+                </label>
+                <div class="form-element">
+                    <label>Breed: {{newCat.breed}} &nbsp;</label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="radiobreed" value='KBL' [(ngModel)]="newCat.breed">KBL
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="radiobreed" value='KBS' [(ngModel)]="newCat.breed">KBS
+                    </label>
+                </div>
+
+                <label class="form-element">photo:
+                    <input [(ngModel)]="newCat.photoLink" placeholder="" name="photo" />
+                </label>
+
+                <button type="button" (onClick)=cancel()>Cancel</button>
+                <button type="submit" (click)="addCat()">save</button>
+            </form>
+        </div>
+
+        <div class="col-md">
+            <form *ngIf="selectedCat" ngNativeValidate (ngSubmit)="save()" class="edit-cat-details">
+                <label class="form-element">name:
+                    <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" required />
+                </label>
+
+                <div class="form-group form-element">
+                    <label>Gender: &nbsp;</label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="radiogender" [value]='0' [(ngModel)]="selectedCat.gender">Male
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="radiogender" [value]='1' [(ngModel)]="selectedCat.gender">Female
+                    </label>
+
+                </div>
+
+                <label class="form-element">title:
+                    <input [(ngModel)]="selectedCat.title" placeholder="title" name="title" />
+                </label>
+
+                <label class="form-element">colour:
+                    <input [(ngModel)]="selectedCat.colour" placeholder="colour" name="colour" required />
+                </label>
+
+                <label class="form-element">birthday:
+                    <input [ngModel]="selectedCat.birthday | date:'yyyy-MM-dd'" name="birthday" type="date"
+                        class="datepicker" (ngModelChange)="selectedCat.birthday = $event">
+                </label>
+                <label class="form-element">father:
+                    <select [(ngModel)]="selectedCat.sireId" name="sireId">
+                        <option *ngFor="let male of males" value={{male.id}}>
+                            {{male.name}}
+                        </option>
+                    </select>
+                </label>
+
+                <label class="form-element">mother:
+                    <select [(ngModel)]="selectedCat.damId" name="damId">
+                        <option *ngFor="let female of females" value={{female.id}}>
+                            {{female.name}}
+                        </option>
+                    </select>
+                </label>
+                <div class="form-element">
+                    <label>Breed: {{selectedCat.breed}} &nbsp;</label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="radiobreed" value='KBL' [(ngModel)]="selectedCat.breed">KBL
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="radiobreed" value='KBS' [(ngModel)]="selectedCat.breed">KBS
+                    </label>
+                </div>
+
+                <label class="form-element">photo:
+                    <input [(ngModel)]="selectedCat.photoLink" placeholder="" name="photo" />
+                </label>
+
+                <button type="button" (onClick)=cancel()>Cancel</button>
+                <button type="submit" (onClick)=save()>Update</button>
+            </form>
+        </div>
+    </div>
+</div>
