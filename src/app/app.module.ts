@@ -24,6 +24,7 @@ import { FilterPipe} from './filter.pipe';
 import { AddCatComponent } from './add-cat/add-cat.component';
 import { DeleteCatComponent } from './delete-cat/delete-cat.component';
 import { ManageCatsComponent } from './manage-cats/manage-cats.component';
+import { TailsGeneticsComponent } from './tails-genetics/tails-genetics.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ManageCatsComponent } from './manage-cats/manage-cats.component';
     FilterPipe,
     AddCatComponent,
     DeleteCatComponent,
-    ManageCatsComponent 
+    ManageCatsComponent,
+    TailsGeneticsComponent 
   ],
   imports: [
     BrowserModule,

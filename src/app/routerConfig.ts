@@ -10,6 +10,7 @@ import { UpdateCatComponent } from './update-cat/update-cat.component';
 import { AddCatComponent } from './add-cat/add-cat.component';
 import { DeleteCatComponent } from './delete-cat/delete-cat.component';
 import { ManageCatsComponent } from './manage-cats/manage-cats.component';
+import { TailsGeneticsComponent } from './tails-genetics/tails-genetics.component';
 
 const appRoutes: Routes = [
   { path: 'home', 
@@ -54,6 +55,10 @@ const appRoutes: Routes = [
   {
     path: 'manage',
     component: ManageCatsComponent
+  },
+  {
+    path: 'tails',
+    component: TailsGeneticsComponent
   }
 ];
 export default appRoutes;

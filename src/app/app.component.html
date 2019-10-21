@@ -1,8 +1,18 @@
 <body>
-  <header>{{title}}</header>
+  <header></header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="nav-item nav-link" routerLink="home" routerLinkActive="active">Home</a>
-    <a class="nav-item nav-link" routerLink="about">Breed</a>
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Info
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" routerLink="about">About Breed</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" routerLink="tails">Types of tails</a>
+      </div>
+    </div>
     <a class="nav-item nav-link" routerLink="gallery">Photo Gallery</a>
     <a class="nav-item nav-link" routerLink="search">Search</a>
     <a class="nav-item nav-link" routerLink="catteries-map">Find Cattery</a>
@@ -12,4 +22,5 @@
   </nav>
   <router-outlet class="content"></router-outlet>
 </body>
-<footer></footer>
+<footer>
+</footer>
