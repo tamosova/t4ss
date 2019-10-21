@@ -51,7 +51,7 @@
                         type="date" class="datepicker" (ngModelChange)="newCat.birthday = $event">
                 </label>
                 <label class="form-element">father:
-                    <select [(ngModel)]="newCat.sireId" name="sireId" (click)="onSelect()">
+                    <select [(ngModel)]="newCat.sireId" name="sireId">
                         <option *ngFor="let male of males" value={{male.id}}>
                             {{male.name}}
                         </option>
@@ -59,7 +59,7 @@
                 </label>
 
                 <label class="form-element">mother:
-                    <select [(ngModel)]="newCat.damId" name="damId" (click)="onSelect()">
+                    <select [(ngModel)]="newCat.damId" name="damId">
                         <option *ngFor="let female of females" value={{female.id}}>
                             {{female.name}}
                         </option>
