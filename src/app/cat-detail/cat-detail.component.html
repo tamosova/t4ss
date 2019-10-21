@@ -1,7 +1,7 @@
 <div *ngIf="cat" class="cat-info">
   <div class=title>
     <div class="title-text">
-      {{cat.name | uppercase}}
+     {{cat.title| uppercase}} {{cat.name | uppercase}}
     </div>
     <div class="title-icon">
       <span *ngIf="!cat.gender" class="fa fa-mars"></span>
@@ -13,6 +13,7 @@
     <img src="assets/cats-photos/fullsize/{{cat.photoLink}}">
   </div>
 
+  <div class="colour">Colour: {{cat.colour}}</div>
 
   <div class="birthday"> Date of birth:
 

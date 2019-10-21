@@ -35,36 +35,40 @@ export class CatDetailComponent implements OnInit {
   }
 
   buildPedigree(cat: Cat, depth: number): string {
-    let sire = cat.sireId ? this.getCat(cat.sireId) : this.noInfoCat;
-    let dam = cat.damId ? this.getCat(cat.damId) : this.noInfoCat;
-    let sireImg = "";
-    let damImg = "";
+    let sire = (cat.sireId >= 0) ? this.getCat(cat.sireId) : this.noInfoCat;
+    let dam = (cat.damId >= 0) ? this.getCat(cat.damId) : this.noInfoCat;
 
-    if (sire.photoLink) {
-      sireImg = `<img src='assets/cats-photos/fullsize/${sire.photoLink}' alt='photo of ${sire.name}' width='80%'>`
-    }
-    if (dam.photoLink) {
-      damImg = `<img src='assets/cats-photos/fullsize/${dam.photoLink}' alt='photo of ${dam.name}' width='80%'>`
-    }
     if (depth == 1) {
-      return `<table width=100% border='1'>
-      <tr><td width=${100 / this.pedigreeDepth}% align='center'>${sire.title} ${sire.name} <br>
-       (${sire.colour}) <br>
-      ${sireImg} 
-      </td></tr>
-      <tr><td align='center'>${dam.title} ${dam.name} <br> (${dam.colour}) <br>
-      ${damImg} </td></tr></table>`;
+      return `<table width=100% height=100% border='1'>
+      <tr>${this.buildCell(sire)}</tr>
+      <tr>${this.buildCell(dam)}</tr></table>`;
     }
     else {
-      return `<table width=100% border='1' align='center'>
-      <tr><td width=${100 / this.pedigreeDepth}% align='center'>${sire.title} ${sire.name} <br> (${sire.colour})<br>
-      ${sireImg} 
-      
-      </td><td align='center'>${this.buildPedigree(sire, depth - 1)}</td></tr>
-      <tr><td width=${100 / this.pedigreeDepth}% align='center'>${dam.title} ${dam.name} <br> (${dam.colour})<br>
-      ${damImg} </td><td align='center'>${this.buildPedigree(dam, depth - 1)}</td></tr>
+      return `<table width=100% height=100% border='1' align='center'>
+      <tr>${this.buildCell(sire)}<td align='center'>${this.buildPedigree(sire, depth - 1)}</td></tr>
+      <tr>${this.buildCell(dam)}<td align='center'>${this.buildPedigree(dam, depth - 1)}</td></tr>
       </table>`;
     }
+  }
+
+  buildCell(cat: Cat): string {
+    let catImg = "";
+    if (cat.id == 0)
+      return `<td width=${100 / this.pedigreeDepth}% align='center'>No Information</td>`;
+    if (cat.id == -1)
+      return `<td width=${100 / this.pedigreeDepth}% align='center'>Unknown</td>`;
+
+    if (cat.photoLink) {
+      catImg = `<img src='assets/cats-photos/fullsize/${cat.photoLink}' alt='photo of ${cat.name}' width='80%'>`
+    }
+    return `<td width=${100 / this.pedigreeDepth}% align='center'>
+      <a href="/detail/${cat.id}">
+      ${cat.title} ${cat.name} </a>
+      <br>
+       (${cat.colour})
+       <br>
+      ${catImg} 
+      </td>`
   }
 
   getCat(id: number) {
