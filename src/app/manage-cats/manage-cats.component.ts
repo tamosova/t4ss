@@ -62,16 +62,31 @@ export class ManageCatsComponent implements OnInit {
 
   saveUpdated(): void {
     this.catService.updateCat(this.selectedCat).subscribe();
+    alert("Your changes has been saved!");
     this.selectedCat = null;
+    this.filtered = false;
   }
 
   addCat(){
     this.catService.addCat(this.newCat).subscribe();
+    alert(`${this.newCat.name} added!`);
+    this.getCats();
+    this.filtered = false;
     this.newCat = null;
+    this.searchText = "";
   }
 
+  deleteCat(cat:Cat)
+  {
+    if(confirm(`Are you sure to delete ${cat.name}?`)) {
+      this.catService.deleteCat(cat.id).subscribe();
+      this.getCats();
+      this.filtered = false;
+    }
+  }
   cancel() {
     this.cancelUnsavedChanges();
+    this.searchText = "";
   }
 
   cancelUnsavedChanges() {
