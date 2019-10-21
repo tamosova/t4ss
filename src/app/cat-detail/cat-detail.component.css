@@ -8,9 +8,10 @@
     font-size: 2em;
     text-align: center;
 }
-.title-photo{
-  max-width: 100%;
-  height: auto;
+.title-icon{
+    font-weight: bolder;
+    font-size: 2em;
+    margin-left: 10px;
 }
 
 button {

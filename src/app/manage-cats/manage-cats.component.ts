@@ -27,7 +27,8 @@ export class ManageCatsComponent implements OnInit {
     this.cats = this.catService.getCatsAsClassSortedByName();
   }
 
-  addCat() {
+  showAddCatForm() {
+    this.cancelUnsavedChanges();
     if (!this.filtered) {
       this.females = this.cats.filter(cat => cat.gender === Gender.Female);
       this.males = this.cats.filter(cat => cat.gender === Gender.Male);
@@ -44,19 +45,37 @@ export class ManageCatsComponent implements OnInit {
     });
   }
 
-  cancel() {
-    this.newCat = null;
-    this.selectedCat = null;
-  }
-
-  updateCat(cat:Cat)
-  {
+  showUpdateCatForm(cat: Cat) {
+    this.cancelUnsavedChanges();
+    if (!this.filtered) {
+      this.females = this.cats.filter(cat => cat.gender === Gender.Female);
+      this.males = this.cats.filter(cat => cat.gender === Gender.Male);
+      this.females.push(Cat.unknownCat);
+      this.females.push(Cat.noInfoCat);
+      this.males.push(Cat.unknownCat);
+      this.males.push(Cat.noInfoCat);
+      this.filtered = true;
+    }
     console.log("updating", cat);
     this.selectedCat = cat;
   }
 
   saveUpdated(): void {
-    this.catService.updateCat(this.selectedCat);
+    this.catService.updateCat(this.selectedCat).subscribe();
+    this.selectedCat = null;
+  }
+
+  addCat(){
+    this.catService.addCat(this.newCat).subscribe();
+    this.newCat = null;
+  }
+
+  cancel() {
+    this.cancelUnsavedChanges();
+  }
+
+  cancelUnsavedChanges() {
+    this.newCat = null;
     this.selectedCat = null;
   }
 }

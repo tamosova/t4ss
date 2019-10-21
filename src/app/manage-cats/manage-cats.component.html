@@ -2,12 +2,12 @@
     <div class="row">
         <div *ngIf="cats" class="col-md">
             <input [(ngModel)]="searchText" placeholder="name">
-            <button type="button" (click)="addCat()">Add cat</button>
+            <button type="button" (click)="showAddCatForm()">Add cat</button>
             <ul class="cats-list list-group">
                 <li class="cat-manage list-group-item" *ngFor="let cat of cats| filter : searchText">
                     <span class="name">{{cat.name}}</span>
                     <div class="actions">
-                        <button type="button" class="update btn btn-primary btn-sm" (click)="updateCat(cat)">
+                        <button type="button" class="update btn btn-primary btn-sm" (click)="showUpdateCatForm(cat)">
                             <span class="fa fa-pencil"></span>
                         </button>
                         <button type="button" class="delete btn btn-danger btn-sm"
@@ -19,7 +19,7 @@
             </ul>
         </div>
 
-        <div class="addCatForm col-md" *ngIf="newCat">
+        <div class="col-md" *ngIf="newCat">
             <form ngNativeValidate (ngSubmit)="save()">
                 <label class="form-element">name:
                     <input [(ngModel)]="newCat.name" placeholder="name" name="name" required />
@@ -81,13 +81,13 @@
                     <input [(ngModel)]="newCat.photoLink" placeholder="" name="photo" />
                 </label>
 
-                <button type="button" (onClick)=cancel()>Cancel</button>
-                <button type="submit" (click)="addCat()">save</button>
+                <button type="button" (click)=cancel()>Cancel</button>
+                <button type="button" (click)="addCat()">Save</button>
             </form>
         </div>
 
         <div class="col-md">
-            <form *ngIf="selectedCat" ngNativeValidate (ngSubmit)="save()" class="edit-cat-details">
+            <form *ngIf="selectedCat" ngNativeValidate>
                 <label class="form-element">name:
                     <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" required />
                 </label>
@@ -148,8 +148,8 @@
                     <input [(ngModel)]="selectedCat.photoLink" placeholder="" name="photo" />
                 </label>
 
-                <button type="button" (onClick)=cancel()>Cancel</button>
-                <button type="submit" (onClick)=save()>Update</button>
+                <button type="button" (click)=cancel()>Cancel</button>
+                <button type="button" (click)=saveUpdated()>Update</button>
             </form>
         </div>
     </div>

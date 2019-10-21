@@ -70,7 +70,7 @@ export class CatService {
   }
 
   updateCat(cat: Cat): Observable<Cat> {
-    return this.httpClient.put<Cat>(this.catsUrl, cat, this.httpOptions)
+    return this.httpClient.put<Cat>(`${this.catsUrl}/${cat.id}`, cat, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );
