@@ -24,7 +24,6 @@ import { FilterPipe} from './filter.pipe';
 import { AddCatComponent } from './add-cat/add-cat.component';
 import { DeleteCatComponent } from './delete-cat/delete-cat.component';
 import { ManageCatsComponent } from './manage-cats/manage-cats.component';
-import { ConfirmationDialogueComponent } from './confirmation-dialogue/confirmation-dialogue.component';
 
 
 @NgModule({
@@ -41,8 +40,7 @@ import { ConfirmationDialogueComponent } from './confirmation-dialogue/confirmat
     FilterPipe,
     AddCatComponent,
     DeleteCatComponent,
-    ManageCatsComponent,
-    ConfirmationDialogueComponent
+    ManageCatsComponent 
   ],
   imports: [
     BrowserModule,
