@@ -1,6 +1,8 @@
 .form-element
 {
-    display: block
+    display: block;
+    font-size: 1em;
+    margin: 0.5em 1em 0 1em;
 }
 
 .cat-manage {
@@ -14,7 +16,36 @@
     transform: translateY(-50%);
 }
 
-
 .cats-list {
     width: 100%;
+    margin-top: 1em;
+}
+
+.cat-add {
+    margin-top: 1em;
+}
+
+.cat-form{
+    border: 1px solid lightgray;
+    margin: 0.5em 0;
+}
+.form-title{
+    font-size: 2em;
+    text-align: center;
+    margin: 0.35em 0;
+}
+
+.last{
+    margin: 0.5em 1em 1em 1em;
+}
+.cat-form-buttons{
+    text-align: right;
+}
+
+.cat-button{
+    margin-left: 2px;
+}
+
+.radio-inline {
+    margin-bottom: 0;
 }

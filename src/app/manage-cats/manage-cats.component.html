@@ -1,12 +1,16 @@
 <div class="container">
     <div class="row">
         <div *ngIf="cats" class="col-md">
-            <input [(ngModel)]="searchText" placeholder="name">
-            <button type="button" (click)="showAddCatForm()">Add cat</button>
+            <div class="input-group cat-add">
+                <input [(ngModel)]="searchText" placeholder="name" class="cat-search form-control">
+                <div class="input-group-append">
+                    <button class="btn btn-sm btn-primary" type="button" (click)="showAddCatForm()">Add cat</button>
+                </div>
+            </div>
             <ul class="cats-list list-group">
                 <li class="cat-manage list-group-item" *ngFor="let cat of cats| filter : searchText">
                     <span class="name">{{cat.name}}</span>
-                    <div class="actions">
+                    <div class="actions btn-group">
                         <button type="button" class="update btn btn-primary btn-sm" (click)="showUpdateCatForm(cat)">
                             <span class="fa fa-pencil"></span>
                         </button>
@@ -18,153 +22,93 @@
             </ul>
         </div>
 
-        <div class="col-md" *ngIf="newCat">
-            <form ngNativeValidate (ngSubmit)="alert('sss')">
-                <label class="form-element" for="name">name:
-                    <input [(ngModel)]="newCat.name" placeholder="name" name="name" required />
-                </label>
-
-                <div class="form-group form-element">
-                    <label for="radiogender">Gender: &nbsp;</label>
-
-                    <label class="radio-inline">
-                        <input type="radio" name="radiogender" [value]='0' [(ngModel)]="newCat.gender">Male
-                    </label>
-
-                    <label class="radio-inline">
-                        <input type="radio" name="radiogender" [value]='1' [(ngModel)]="newCat.gender">Female
-                    </label>
-
-                </div>
-
-                <label class="form-element" for="title">title:
-                    <input [(ngModel)]="newCat.title" placeholder="title" name="title" />
-                </label>
-
-                <label class="form-element" for="colour">colour:
-                    <input [(ngModel)]="newCat.colour" placeholder="colour" name="colour" />
-                </label>
-
-                <label class="form-element" for="birthday">birthday:
-                    <input [ngModel]="newCat.birthday ? (newCat.birthday | date:'yyyy-MM-dd') : null" name="birthday"
-                        type="date" class="datepicker" (ngModelChange)="newCat.birthday = $event">
-                </label>
-                <label class="form-element" for="sireId">father:
-                    <select [(ngModel)]="newCat.sireId" name="sireId">
-                        <option *ngFor="let male of males" value={{male.id}}>
-                            {{male.name}}
-                        </option>
-                    </select>
-                </label>
-
-                <label class="form-element" for="damId">mother:
-                    <select [(ngModel)]="newCat.damId" name="damId">
-                        <option *ngFor="let female of females" value={{female.id}}>
-                            {{female.name}}
-                        </option>
-                    </select>
-                </label>
-                <div class="form-element">
-                    <label for="radiobreed">Breed: {{newCat.breed}} &nbsp;</label>
-
-                    <label class="radio-inline">
-                        <input type="radio" name="radiobreed" value='KBL' [(ngModel)]="newCat.breed">KBL
-                    </label>
-
-                    <label class="radio-inline">
-                        <input type="radio" name="radiobreed" value='KBS' [(ngModel)]="newCat.breed">KBS
-                    </label>
-                </div>
-
-                <label class="form-element" for="photo">photo:
-                    <input [(ngModel)]="newCat.photoLink" placeholder="" name="photo" />
-                </label>
-
-                <button type="button" (click)=cancel()>Cancel</button>
-                <button type="submit">Save</button>
-            </form>
-        </div>
-
         <div class="col-md">
-            <form *ngIf="selectedCat" #catForm="ngForm"  appSelfParent appBirthdayFuture existingCats="cats" (ngSubmit)="save()">
-                <input type="hidden" name="catId" [(ngModel)]="selectedCat.id">
-
-                <label class="form-element">name:
-                    <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" />
-                </label>
-
-                <div *ngIf="!selectedCat.name && (catForm.touched || catForm.dirty)"
-                    class="cross-validation-error-message alert alert-danger">
-                    Name cannot be empty.
+            <form *ngIf="selectedCat" #catForm="ngForm" appSelfParent appBirthdayFuture (ngSubmit)="save()">
+                <div class="form-title">
+                    {{updateTitle}}
                 </div>
+                <div class="cat-form">
+                    <input type="hidden" name="catId" [(ngModel)]="selectedCat.id" />
 
-                <div *ngIf="catForm.errors?.parentSelf && (catForm.touched || catForm.dirty)"
-                    class="cross-validation-error-message alert alert-danger">
-                    Name cannot match parent name.
-                </div>
-
-                <div class="form-group form-element">
-                    <label>Gender: &nbsp;</label>
-
-                    <label class="radio-inline">
-                        <input type="radio" name="radiogender" [value]='0' [(ngModel)]="selectedCat.gender">Male
+                    <label class="form-element">name:
+                        <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" class="form-control" />
                     </label>
 
-                    <label class="radio-inline">
-                        <input type="radio" name="radiogender" [value]='1' [(ngModel)]="selectedCat.gender">Female
-                    </label>
-                </div>
+                    <div *ngIf="!selectedCat.name && (catForm.touched || catForm.dirty)"
+                        class="cross-validation-error-message alert alert-danger">
+                        Name cannot be empty.
+                    </div>
 
-                <label class="form-element">title:
-                    <input [(ngModel)]="selectedCat.title" placeholder="title" name="title" />
-                </label>
+                    <div *ngIf="catForm.errors?.parentSelf && (catForm.touched || catForm.dirty)"
+                        class="cross-validation-error-message alert alert-danger">
+                        Name cannot match parent name.
+                    </div>
+                    
+                    <label class="form-element">gender: &nbsp;</label>
+                    <div class="form-check form-check-inline form-element mt-0">
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" name="radiogender" [value]='0'
+                                [(ngModel)]="selectedCat.gender">male &nbsp;
+                        </label>
 
-                <label class="form-element">colour:
-                    <input [(ngModel)]="selectedCat.colour" placeholder="colour" name="colour" />
-                </label>
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" name="radiogender" [value]='1'
+                                [(ngModel)]="selectedCat.gender">female
+                        </label>
+                    </div>
 
-                <label class="form-element">birthday:
-                    <input [ngModel]="selectedCat.birthday | date:'yyyy-MM-dd'" name="birthday" type="date"
-                        class="datepicker" (ngModelChange)="selectedCat.birthday = $event">
-                </label>
-
-                <div *ngIf="catForm.errors?.birthdayFuture && (catForm.touched || catForm.dirty)"
-                    class="cross-validation-error-message alert alert-danger">
-                    Birthday cannot be in a future.
-                </div>
-                <label class="form-element">father:
-                    <select [(ngModel)]="selectedCat.sireId" name="sireId">
-                        <option *ngFor="let male of males" value={{male.id}}>
-                            {{male.name}}
-                        </option>
-                    </select>
-                </label>
-
-                <label class="form-element">mother:
-                    <select [(ngModel)]="selectedCat.damId" name="damId">
-                        <option *ngFor="let female of females" value={{female.id}}>
-                            {{female.name}}
-                        </option>
-                    </select>
-                </label>
-                <div class="form-element">
-                    <label>Breed: {{selectedCat.breed}} &nbsp;</label>
-
-                    <label class="radio-inline">
-                        <input type="radio" name="radiobreed" value='KBL' [(ngModel)]="selectedCat.breed">KBL
+                    <label class="form-element">title:
+                        <input [(ngModel)]="selectedCat.title" placeholder="title" name="title" class="form-control" />
                     </label>
 
-                    <label class="radio-inline">
-                        <input type="radio" name="radiobreed" value='KBS' [(ngModel)]="selectedCat.breed">KBS
+                    <label class="form-element">colour:
+                        <input [(ngModel)]="selectedCat.colour" placeholder="colour" name="colour"
+                            class="form-control" />
+                    </label>
+
+                    <label class="form-element">birthday:
+                        <input [ngModel]="selectedCat.birthday | date:'yyyy-MM-dd'" name="birthday" type="date"
+                            class="datepicker" (ngModelChange)="selectedCat.birthday = $event">
+                    </label>
+
+                    <div *ngIf="catForm.errors?.birthdayFuture && (catForm.touched || catForm.dirty)"
+                        class="cross-validation-error-message alert alert-danger">
+                        Birthday cannot be in a future.
+                    </div>
+                    <label class="form-element">father:
+                        <select [(ngModel)]="selectedCat.sireId" name="sireId" class="form-control">
+                            <option *ngFor="let male of males" value={{male.id}}>
+                                {{male.name}}
+                            </option>
+                        </select>
+                    </label>
+
+                    <label class="form-element">mother:
+                        <select [(ngModel)]="selectedCat.damId" name="damId" class="form-control">
+                            <option *ngFor="let female of females" value={{female.id}}>
+                                {{female.name}}
+                            </option>
+                        </select>
+                    </label>
+                    <label class="form-element ">breed: &nbsp;</label>
+                    <div class="form-check form-check-inline form-element mt-0">
+                        <label class="radio-inline">
+                            <input type="radio" name="radiobreed" value='KBL' [(ngModel)]="selectedCat.breed">KBL &nbsp;
+                        </label>
+
+                        <label class="radio-inline">
+                            <input type="radio" name="radiobreed" value='KBS' [(ngModel)]="selectedCat.breed">KBS
+                        </label>
+                    </div>
+
+                    <label class="form-element last">photo:
+                        <input [(ngModel)]="selectedCat.photoLink" placeholder="" name="photo" class="form-control" />
                     </label>
                 </div>
-
-                <label class="form-element">photo:
-                    <input [(ngModel)]="selectedCat.photoLink" placeholder="" name="photo" />
-                </label>
-
-                <button type="button" (click)=cancel()>Cancel</button>
-                <button type="submit" [disabled]="!catForm.valid">Update</button>
+                <div class="cat-form-buttons">
+                    <button type="button" (click)=cancel() class="btn btn-secondary cat-button">Cancel</button>
+                    <button type="submit" [disabled]="!catForm.valid" class="btn btn-primary cat-button">Save</button>
+                </div>
             </form>
         </div>
     </div>

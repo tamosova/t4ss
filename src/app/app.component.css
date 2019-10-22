@@ -1,0 +1,10 @@
+header{
+    text-align: center;
+    background-image: linear-gradient(	#A4C7DD,  #6996B5, 	#A4C7DD);
+}
+.header-text{
+    font-family: fantasy;
+}
+.header-img{
+    height: 100px;
+}

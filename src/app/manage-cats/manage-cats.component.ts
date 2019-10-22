@@ -10,12 +10,12 @@ import { CatService } from '@app/cat.service';
 export class ManageCatsComponent implements OnInit {
 
   cats: Cat[] = [];
-  newCat: Cat;
   selectedCat: Cat;
   searchText: string;
   males: Cat[] = [];
   females: Cat[] = [];
   filtered = false;
+  updateTitle = "";
 
   constructor(private catService: CatService) { }
 
@@ -27,31 +27,26 @@ export class ManageCatsComponent implements OnInit {
     this.cats = this.catService.getCatsAsClassSortedByName();
   }
 
-  save()
-  {
-    alert("submitted!");
+  save() {
+    if (this.selectedCat.id)
+    {
+      this.saveUpdated();
+    }
+    this.addCat()
   }
 
   showAddCatForm() {
     this.cancelUnsavedChanges();
-    if (!this.filtered) {
-      this.females = this.cats.filter(cat => cat.gender === Gender.Female);
-      this.males = this.cats.filter(cat => cat.gender === Gender.Male);
-      this.females.push(Cat.unknownCat);
-      this.females.push(Cat.noInfoCat);
-      this.males.push(Cat.unknownCat);
-      this.males.push(Cat.noInfoCat);
-      this.filtered = true;
-    }
-    this.newCat = new Cat({
+    this.filterGenders();
+    this.updateTitle = "Enter new cat details";
+    this.selectedCat = new Cat({
       "id": "", "name": this.searchText, "birthday": null,
-      "gender": 0, "colour": "", "sireId": "", "damId": "", "title": "",
+      "gender": 0, "colour": "", "sireId": "0", "damId": "0", "title": "",
       "breed": "KBL", "photoLink": ""
     });
   }
 
-  showUpdateCatForm(cat: Cat) {
-    this.cancelUnsavedChanges();
+  filterGenders() {
     if (!this.filtered) {
       this.females = this.cats.filter(cat => cat.gender === Gender.Female);
       this.males = this.cats.filter(cat => cat.gender === Gender.Male);
@@ -61,7 +56,12 @@ export class ManageCatsComponent implements OnInit {
       this.males.push(Cat.noInfoCat);
       this.filtered = true;
     }
-    console.log("updating", cat);
+  }
+
+  showUpdateCatForm(cat: Cat) {
+    this.cancelUnsavedChanges();
+    this.filterGenders();
+    this.updateTitle = `${cat.name} - update info`;
     this.selectedCat = cat;
   }
 
@@ -72,18 +72,17 @@ export class ManageCatsComponent implements OnInit {
     this.filtered = false;
   }
 
-  addCat(){
-    this.catService.addCat(this.newCat).subscribe();
-    alert(`${this.newCat.name} added!`);
+  addCat() {
+    this.catService.addCat(this.selectedCat).subscribe();
+    alert(`${this.selectedCat.name} added!`);
     this.getCats();
     this.filtered = false;
-    this.newCat = null;
+    this.cancelUnsavedChanges();
     this.searchText = "";
   }
 
-  deleteCat(cat:Cat)
-  {
-    if(confirm(`Are you sure to delete ${cat.name}?`)) {
+  deleteCat(cat: Cat) {
+    if (confirm(`Are you sure to delete ${cat.name}?`)) {
       this.catService.deleteCat(cat.id).subscribe();
       this.getCats();
       this.filtered = false;
@@ -92,10 +91,10 @@ export class ManageCatsComponent implements OnInit {
   cancel() {
     this.cancelUnsavedChanges();
     this.searchText = "";
+    this.updateTitle = "";
   }
 
   cancelUnsavedChanges() {
-    this.newCat = null;
     this.selectedCat = null;
   }
 }
