@@ -1,7 +1,7 @@
 <h3>Our cats</h3>
 <div class="gallery">
     <div *ngFor="let cat of cats">
-        <div *ngIf= "cat.photoLink" class="preview">
+        <div *ngIf= "cat.photoLink">
             <div class="gallery-element ">
                 <img src="assets/cats-photos/fullsize/{{cat.photoLink}}" alt="photo of {{cat.name}}" (click)="openModal(cat)">
                 <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>

@@ -22,6 +22,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FilterPipe} from './filter.pipe';
 import { ManageCatsComponent } from './manage-cats/manage-cats.component';
 import { TailsGeneticsComponent } from './tails-genetics/tails-genetics.component';
+import { ParentSelfValidatorDirective } from './_validators/parents-self.directive';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { TailsGeneticsComponent } from './tails-genetics/tails-genetics.componen
     LoginComponent,
     FilterPipe,
     ManageCatsComponent,
-    TailsGeneticsComponent 
+    TailsGeneticsComponent,
+    ParentSelfValidatorDirective 
   ],
   imports: [
     BrowserModule,

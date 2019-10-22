@@ -27,6 +27,11 @@ export class ManageCatsComponent implements OnInit {
     this.cats = this.catService.getCatsAsClassSortedByName();
   }
 
+  save()
+  {
+    alert("submitted!");
+  }
+
   showAddCatForm() {
     this.cancelUnsavedChanges();
     if (!this.filtered) {
