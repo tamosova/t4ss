@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor, ErrorInterceptor,fakeBackendProvider } from './_helpers';
+import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helpers';
 
 
 import { AppComponent } from './app.component';
@@ -19,10 +19,12 @@ import appRoutes from './routerConfig';
 import { MapComponent } from './map/map.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FilterPipe} from './filter.pipe';
+import { FilterPipe } from './filter.pipe';
 import { ManageCatsComponent } from './manage-cats/manage-cats.component';
 import { TailsGeneticsComponent } from './tails-genetics/tails-genetics.component';
 import { ParentSelfValidatorDirective } from './_validators/parents-self.directive';
+import { BirthdayFutureValidatorDirective } from './_validators/birthday-future.directive';
+import { NameUniqueValidatorDirective } from './_validators/name-unique-validator-directive.directive';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { ParentSelfValidatorDirective } from './_validators/parents-self.directi
     FilterPipe,
     ManageCatsComponent,
     TailsGeneticsComponent,
-    ParentSelfValidatorDirective 
+    ParentSelfValidatorDirective,
+    BirthdayFutureValidatorDirective,
+    NameUniqueValidatorDirective
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import { ParentSelfValidatorDirective } from './_validators/parents-self.directi
     ModalModule,
     LeafletModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

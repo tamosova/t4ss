@@ -86,11 +86,11 @@
         </div>
 
         <div class="col-md">
-            <form *ngIf="selectedCat" #catForm="ngForm" appSelfParent (ngSubmit)="save()" ngNativeValidate>
+            <form *ngIf="selectedCat" #catForm="ngForm"  appSelfParent appBirthdayFuture existingCats="cats" (ngSubmit)="save()">
                 <input type="hidden" name="catId" [(ngModel)]="selectedCat.id">
 
                 <label class="form-element">name:
-                    <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" required />
+                    <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" />
                 </label>
 
                 <div *ngIf="!selectedCat.name && (catForm.touched || catForm.dirty)"
@@ -127,6 +127,11 @@
                     <input [ngModel]="selectedCat.birthday | date:'yyyy-MM-dd'" name="birthday" type="date"
                         class="datepicker" (ngModelChange)="selectedCat.birthday = $event">
                 </label>
+
+                <div *ngIf="catForm.errors?.birthdayFuture && (catForm.touched || catForm.dirty)"
+                    class="cross-validation-error-message alert alert-danger">
+                    Birthday cannot be in a future.
+                </div>
                 <label class="form-element">father:
                     <select [(ngModel)]="selectedCat.sireId" name="sireId">
                         <option *ngFor="let male of males" value={{male.id}}>
