@@ -1,0 +1,31 @@
+<div *ngIf="cat" class="cat-info">
+    <div class=title>
+        <div class="title-text">
+            {{cat.title| uppercase}} {{cat.name | uppercase}}
+        </div>
+        <div class="title-icon">
+            <span *ngIf="!cat.gender" class="fa fa-mars"></span>
+            <span *ngIf="cat.gender" class="fa fa-venus"></span>
+        </div>
+    </div>
+    <div class="colour">Colour: {{cat.colour}}</div>
+
+    <div class="birthday"> Date of birth:
+
+        <ng-container *ngIf="cat.birthday; then birthdayNotNull; else birthdayIsNull">
+        </ng-container>
+
+        <ng-template #birthdayNotNull>
+            <div class="date">
+                {{cat.birthday | date: 'dd/MM/yyyy'}}
+            </div>
+        </ng-template>
+
+        <ng-template #birthdayIsNull>
+            <div class="date">
+            </div>
+        </ng-template>
+
+    </div>
+    <button (click)="close()">close</button>
+</div>

@@ -11,6 +11,8 @@ export class SearchComponent implements OnInit {
 
   cats: Cat[] = [];
   searchText: string;
+  searchedCats: Cat[] = [];
+  previewCatId: number;
 
   constructor(private catService: CatService) { }
 
@@ -22,5 +24,12 @@ export class SearchComponent implements OnInit {
     this.cats = this.catService.getCatsAsClassSortedByName();
   }
 
+  preview(cat: Cat) {
+    this.previewCatId = cat.id;
+  }
 
+  showNext(id)
+  {
+    this.previewCatId = null;
+  }
 }

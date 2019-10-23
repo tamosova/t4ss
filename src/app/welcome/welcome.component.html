@@ -1,1 +1,3 @@
-<div class="welcome"></div>
+<section id="photos" *ngFor="let cat of cats" >
+<img *ngIf="cat.photoLink" src="assets/cats-photos/fullsize/{{cat.photoLink}}" alt="photo of {{cat.name}}" >
+</section>

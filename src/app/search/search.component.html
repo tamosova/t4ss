@@ -1,32 +1,38 @@
 <h1>Search</h1>
 
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div *ngIf="cats" class="col-md-auto">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div *ngIf="cats" class="col-md-4">
       <div class="input-group cat-add">
         <input [(ngModel)]="searchText" placeholder="name" class="cat-search form-control">
       </div>
       <ul class="cats-list list-group">
         <li class="cat-manage list-group-item" *ngFor="let cat of cats| filter : searchText">
-            <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
- <!--           <img *ngIf="cat.photoLink" src="assets/cats-photos/fullsize/{{cat.photoLink}}" alt="photo of cat.name"> -->
-         </li>
+          <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
+          <div class="actions btn-group">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="preview(cat)">
+              <span class="fa fa-eye"></span>
+            </button>
+          </div>
+        </li>
       </ul>
     </div>
-  </div>
-</div>
-<div class="container">
-    <div class="row justify-content-md-center">
-      <div *ngIf="cats" class="col-md-auto">
-        <div class="input-group cat-add">
-          <input [(ngModel)]="searchText" placeholder="name" class="cat-search form-control">
-        </div>
-        <ul class="cats-list list-group">
-          <li class="cat-manage list-group-item" *ngFor="let cat of cats| filter : searchText">
-              <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
-   <!--           <img *ngIf="cat.photoLink" src="assets/cats-photos/fullsize/{{cat.photoLink}}" alt="photo of cat.name"> -->
-           </li>
-        </ul>
+    <div class="col-md-4">
+      <div class="preview">Preview</div>
+      <div *ngIf="previewCatId">
+        <app-cat-preview [id]="previewCatId" (emitPass)="showNext($event)"></app-cat-preview>
       </div>
     </div>
+    <!--  <div *ngIf="cats" class="col-md-auto">
+      <div>
+        Recent searches
+      </div>
+      <ul class="cats-list list-group">
+        <li class="cat-manage list-group-item" *ngFor="let searchedCat of searchedCats">
+          <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
+        </li>
+      </ul>
+    </div> -->
   </div>
+</div>

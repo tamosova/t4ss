@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CatService } from '@app/cat.service';
+import { Cat } from '@app/cat';
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  cats:Cat[] =[];
+
+  constructor(private catService: CatService) { }
 
   ngOnInit() {
+    this.getCats();
+  }
+
+  getCats(): void {
+    this.catService.getAllCats()
+      .subscribe(cats => this.cats = cats);
   }
 
 }

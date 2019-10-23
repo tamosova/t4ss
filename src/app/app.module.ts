@@ -25,6 +25,7 @@ import { TailsGeneticsComponent } from './tails-genetics/tails-genetics.componen
 import { ParentSelfValidatorDirective } from './_validators/parents-self.directive';
 import { BirthdayFutureValidatorDirective } from './_validators/birthday-future.directive';
 import { NameUniqueValidatorDirective } from './_validators/name-unique-validator-directive.directive';
+import { CatPreviewComponent } from './cat-preview/cat-preview.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { NameUniqueValidatorDirective } from './_validators/name-unique-validato
     TailsGeneticsComponent,
     ParentSelfValidatorDirective,
     BirthdayFutureValidatorDirective,
-    NameUniqueValidatorDirective
+    NameUniqueValidatorDirective,
+    CatPreviewComponent
   ],
   imports: [
     BrowserModule,
