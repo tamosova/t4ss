@@ -1,3 +1,7 @@
-<section id="photos" *ngFor="let cat of cats" >
-<img *ngIf="cat.photoLink" src="assets/cats-photos/fullsize/{{cat.photoLink}}" alt="photo of {{cat.name}}" >
+<section class="gallery">
+    <ngx-masonry-gallery [width]='250' [images]='images'></ngx-masonry-gallery>
+    <div class="text-block">
+            <h4>Kurilian bobtail</h4>
+            <p>Cat with dog's heart</p>
+          </div>
 </section>

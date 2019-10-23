@@ -1,0 +1,47 @@
+ Volume in drive C is Windows-SSD
+ Volume Serial Number is 024F-41A7
+
+ Directory of C:\T4SS\Angular2\kurbob\src\assets\cats-photos\welcome_photos
+
+23/10/2019  16:23    <DIR>          .
+23/10/2019  16:23    <DIR>          ..
+23/05/2010  19:41            43.026 IMG_0006_small.jpg
+27/05/2010  10:51            45.789 IMG_0051_small.jpg
+13/12/2007  18:33            41.158 IMG_0070_small.jpg
+10/10/2009  09:53            38.735 IMG_1561_small.jpg
+10/10/2009  09:59            25.086 IMG_1620_small.jpg
+15/04/2008  13:09            42.561 IMG_1676_small.jpg
+22/01/2010  13:52            39.505 IMG_1679_small.jpg
+13/03/2010  10:12            26.089 IMG_1687_small.jpg
+16/03/2010  22:28            55.085 IMG_1819_small.jpg
+17/03/2010  09:09            52.402 IMG_1851_small.jpg
+23/01/2010  21:17            30.483 IMG_1856_small.jpg
+17/03/2010  09:27            45.243 IMG_1864_small.jpg
+17/03/2010  09:44            87.355 IMG_1879_small.jpg
+23/01/2010  21:17            40.212 IMG_1891_small.jpg
+17/03/2010  10:35            44.475 IMG_1931_small.jpg
+01/02/2010  17:17            28.519 IMG_1934_small.jpg
+17/03/2010  11:13            59.368 IMG_1944_small.jpg
+15/04/2008  16:09            62.608 IMG_1972_small.jpg
+06/01/2008  22:55           101.460 IMG_1979.jpg
+06/01/2008  22:54            94.194 IMG_2039.jpg
+06/01/2008  22:54            69.673 IMG_2049.jpg
+06/10/2009  20:16           106.070 IMG_2127_small.jpg
+06/10/2009  13:57            66.581 IMG_2277_small.jpg
+30/01/2010  21:13            36.238 IMG_2580_small.jpg
+04/02/2010  12:27            39.052 IMG_2623_small.jpg
+05/02/2010  16:10            44.183 IMG_2684_small.jpg
+31/01/2008  00:39            58.661 IMG_2969_small.jpg
+29/01/2008  18:39            32.089 IMG_3141_small.jpg
+16/04/2010  09:33         1.873.855 IMG_3287.JPG
+31/01/2008  21:38            43.175 IMG_3628_small.jpg
+14/06/2008  22:24            39.975 IMG_6817_small.jpg
+15/11/2007  14:04            71.957 IMG_6837_small.jpg
+14/06/2008  22:09            37.258 IMG_7021_small.jpg
+13/06/2008  09:47            43.708 IMG_7080_small.jpg
+12/03/2008  22:13            40.312 IMG_8802_small.jpg
+10/03/2008  18:50            82.358 IMG_9031_small.jpg
+15/01/2008  20:59            43.537 IMG_9511_small.jpg
+23/10/2019  16:23                35 listmyfolder.txt
+              38 File(s)      3.732.070 bytes
+               2 Dir(s)  410.217.091.072 bytes free

@@ -26,6 +26,7 @@ import { ParentSelfValidatorDirective } from './_validators/parents-self.directi
 import { BirthdayFutureValidatorDirective } from './_validators/birthday-future.directive';
 import { NameUniqueValidatorDirective } from './_validators/name-unique-validator-directive.directive';
 import { CatPreviewComponent } from './cat-preview/cat-preview.component';
+import { MasonryGalleryModule } from 'ngx-masonry-gallery';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { CatPreviewComponent } from './cat-preview/cat-preview.component';
     LeafletModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    MasonryGalleryModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
