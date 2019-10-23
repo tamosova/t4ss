@@ -8,6 +8,7 @@ import { MapComponent } from './map/map.component';
 import { LoginComponent } from './login/login.component';
 import { ManageCatsComponent } from './manage-cats/manage-cats.component';
 import { TailsGeneticsComponent } from './tails-genetics/tails-genetics.component';
+import { AuthGuard } from './_helpers';
 
 const appRoutes: Routes = [
   { path: 'home', 
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'manage',
+    canActivate: [AuthGuard],
     component: ManageCatsComponent
   },
   {

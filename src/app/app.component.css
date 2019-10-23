@@ -1,10 +1,24 @@
+
+
 header{
     text-align: center;
     background-image: linear-gradient(	#A4C7DD,  #6996B5, 	#A4C7DD);
 }
 .header-text{
-    font-family: fantasy;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 3px 3px steelblue;
+    font-size: 1.5em;
+    color: whitesmoke;
 }
 .header-img{
-    height: 100px;
+    height: 6em;
 }
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #A4C7DD;
+    color: white;
+    text-align: center;
+  }

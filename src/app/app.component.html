@@ -1,10 +1,14 @@
 <body>
   <header>
     <img src="assets/cats-photos/header-left.png" alt="kurilian bobtail kitten" class="header-img">
-    <span class="header-text">Kurilian Bobtails Info</span>
+    <span class="header-text">Kurilian Bobtails</span>
     <img src="assets/cats-photos/header-right.png" alt="kurilian bobtail kitten"  class="header-img">
   </header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cats-navbar" aria-controls="cats-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class ="collapse navbar-collapse" id="cats-navbar">
     <a class="nav-item nav-link" routerLink="home" routerLinkActive="active">Home</a>
     <div class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -23,8 +27,11 @@
     <a class="nav-item nav-link" routerLink="login" *ngIf="!currentUser">Login</a>
     <a class="nav-item nav-link" routerLink="manage" *ngIf="currentUser">Manage Cats</a>
     <a class="nav-item nav-link" routerLink="#" (click)="logout()" *ngIf="currentUser">Logout</a>
+  </div>
   </nav>
+  
   <router-outlet class="content"></router-outlet>
 </body>
-<footer>
-</footer>
+<!-- <footer>
+    &copy; T4SS
+</footer> -->

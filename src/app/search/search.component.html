@@ -1,7 +1,32 @@
-<input [(ngModel)]="searchText" placeholder="name">
+<h1>Search</h1>
 
-<ul>
-  <li *ngFor="let cat of cats | filter : searchText">
-    <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
-  </li>
-</ul>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div *ngIf="cats" class="col-md-auto">
+      <div class="input-group cat-add">
+        <input [(ngModel)]="searchText" placeholder="name" class="cat-search form-control">
+      </div>
+      <ul class="cats-list list-group">
+        <li class="cat-manage list-group-item" *ngFor="let cat of cats| filter : searchText">
+            <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
+ <!--           <img *ngIf="cat.photoLink" src="assets/cats-photos/fullsize/{{cat.photoLink}}" alt="photo of cat.name"> -->
+         </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <div class="row justify-content-md-center">
+      <div *ngIf="cats" class="col-md-auto">
+        <div class="input-group cat-add">
+          <input [(ngModel)]="searchText" placeholder="name" class="cat-search form-control">
+        </div>
+        <ul class="cats-list list-group">
+          <li class="cat-manage list-group-item" *ngFor="let cat of cats| filter : searchText">
+              <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
+   <!--           <img *ngIf="cat.photoLink" src="assets/cats-photos/fullsize/{{cat.photoLink}}" alt="photo of cat.name"> -->
+           </li>
+        </ul>
+      </div>
+    </div>
+  </div>
