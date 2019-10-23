@@ -46,7 +46,7 @@ export class WelcomeComponent implements OnInit {
 "/assets/cats-photos/welcome_photos/IMG_2684_small.jpg",
 "/assets/cats-photos/welcome_photos/IMG_2969_small.jpg",
 "/assets/cats-photos/welcome_photos/IMG_3141_small.jpg",
-"/assets/cats-photos/welcome_photos/IMG_3287.jpg",
+"/assets/cats-photos/welcome_photos/IMG_3287.JPG",
 "/assets/cats-photos/welcome_photos/IMG_3628_small.jpg",
 "/assets/cats-photos/welcome_photos/IMG_6435_small.jpg",
 "/assets/cats-photos/welcome_photos/IMG_6817_small.jpg",
@@ -62,10 +62,14 @@ export class WelcomeComponent implements OnInit {
 "/assets/cats-photos/welcome_photos/IMG_9613_small.jpg"
   ];
 
-  constructor(private catService: CatService) { }
+  photoColumns = 5;
+  photoColumnWidth = 250;
+  constructor(private catService: CatService) {}
 
   ngOnInit() {
     this.shuffle(this.imagesUrls);
+    console.log(window.innerWidth, this.photoColumns);
+    this.photoColumnWidth = Math.floor((window.innerWidth-5) / this.photoColumns) - 7;
   }
 
   shuffle(a) {

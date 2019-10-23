@@ -4,26 +4,31 @@ h1 {
 }
 
 p {
-    height: 10em;
     width: 70%;
     margin: 1em auto;
-}
-
-.info-text{
     text-align: justify;
     text-justify: inter-character;
-    width: 100%;
-    margin: 0;
 }
+
 .info-photo-right {
     float: right;
     margin: 0 0 0 20px;
-    max-width: 100%;
-    max-height: 100%;
 }
 .info-photo-left {
     float: left;
     margin: 0 20px 0 0;
-    max-width: 100%;
-    max-height: 100%;
 }
+
+.info-photo-left,
+.info-photo-right {
+    max-width: 100%;
+    max-height: 150px;
+}
+
+@media screen and (max-width: 400px) {
+    .info-photo-left,
+    .info-photo-right {
+        width: 100%;
+        max-height: none;
+    }
+  }
