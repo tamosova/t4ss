@@ -1,4 +1,3 @@
-
 .title{
     display: flex;
     justify-content: center;
@@ -46,7 +45,6 @@ button {
 .pedigree-title{
     font-size: 1.5em;
     text-align: center;
-    font-weight: bold;
 }
 
 .colour{
@@ -62,6 +60,23 @@ button {
     margin-top: 1em;
 }
 
+.parent-title{
+    font-size: 1.5em;
+}
+
+.offspring-title{
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.offsprings {
+    margin-top: 1em
+}
+
+.offsprings ul{
+    text-align: center;
+}
+
 @media screen and (max-width: 400px) {
     .pedigreeClass{
         display: none;
@@ -69,6 +84,7 @@ button {
 
     .parents{
         display: block;
+        text-align: center;
     }
   }
 

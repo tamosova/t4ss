@@ -57,5 +57,23 @@
     </ul>
   </div>
 
+  <div *ngIf="cat.sireOf || cat.damOf" class="offsprings">
+    <div class="offspring-title">
+      Offsprings:
+    </div>
+
+    <ul class="cats-list list-group">
+      <li *ngFor="let offspring of cat.sireOf">
+        <a href="/detail/{{offspring.id}}">{{offspring.name}}</a>
+      </li>
+    </ul>
+
+    <ul class="cats-list list-group">
+      <li  *ngFor="let offspring of cat.damOf">
+        <a href="/detail/{{offspring.id}}">{{offspring.name}}</a>
+      </li>
+    </ul>
+  </div>
+
   <button class="btn btn-secondary btn-sm back-button" (click)="goBack()">go back</button>
 </div>

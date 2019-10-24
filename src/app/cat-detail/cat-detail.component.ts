@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { CatService } from "../cat-general/cat.service";
 import { Cat } from '../cat-general/cat';
+import { CatDetail } from '@app/cat-general/cat-detail';
 
 @Component({
   selector: 'app-cat-detail',
@@ -11,7 +12,7 @@ import { Cat } from '../cat-general/cat';
 })
 export class CatDetailComponent implements OnInit {
 
-  cat: Cat = null;
+  cat: CatDetail = null;
   sire: Cat;
   dam: Cat;
   cats: Cat[];
@@ -23,23 +24,38 @@ export class CatDetailComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
+    this.getCatDetails();
+  }
+
+  getCatDetails(): void {
     this.catService.getCatDetails(+this.route.snapshot.paramMap.get('id')).subscribe(data => {
-      this.cat = new Cat(data[0]);
-      if (this.cat.sireId > 0)
-        this.sire = new Cat(data[0].sire);
-      else if (this.cat.sireId == 0)
-        this.sire = Cat.unknownCat;
-      else
-        this.sire = Cat.noInfoCat;
-      if (this.cat.damId > 0)
-        this.dam = new Cat(data[0].dam);
-      else if (this.cat.damId == 0)
-        this.dam = Cat.unknownCat;
-      else
-        this.dam = Cat.noInfoCat;
-      this.cat.sireOf = data[0].sireOf;
-      this.cat.damOf = data[0].damOf;
+      this.buildCatDetailObject(data);
       this.addParentData();
+    });
+  }
+
+  buildCatDetailObject(obj): void {
+
+    this.cat = new CatDetail(obj[0]);
+    if (this.cat.sireId > 0)
+      this.sire = new Cat(obj[0].sire);
+    else if (this.cat.sireId == 0)
+      this.sire = Cat.unknownCat;
+    else
+      this.sire = Cat.noInfoCat;
+    if (this.cat.damId > 0)
+      this.dam = new Cat(obj[0].dam);
+    else if (this.cat.damId == 0)
+      this.dam = Cat.unknownCat;
+    else
+      this.dam = Cat.noInfoCat;
+
+    obj[0].sireOf.forEach(element => {
+      this.cat.sireOf.push(new Cat(element));
+    });
+
+    obj[0].damOf.forEach(element => {
+      this.cat.damOf.push(new Cat(element));
     });
   }
 
@@ -82,18 +98,6 @@ export class CatDetailComponent implements OnInit {
 
   getCat(id: number) {
     return new Cat(this.cats.find(element => element.id == id));
-  }
-
-  getCatDetails(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.catService.getAllCats()
-      .subscribe({
-        next: cats => this.cats = cats,
-        complete: () => {
-          this.cat = this.getCat(id);
-          this.addParentData();
-        }
-      })
   }
 
   addParentData() {
