@@ -46,6 +46,11 @@ const appRoutes: Routes = [
   {
     path: 'tails',
     component: TailsGeneticsComponent
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
   }
 ];
 export default appRoutes;

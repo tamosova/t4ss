@@ -1,6 +1,6 @@
 .gallery{
     margin: 1em auto;
-    opacity: 0.5;
+    opacity: 0.6;
     filter: alpha(opacity=50);
 }
 
@@ -10,11 +10,32 @@
     font-size: 5em;
 }
 .text-block {
-    position: sticky;
-    bottom: 20px;
-    right: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -10%);
     color: white;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 10em;
+    text-align: center;
+}
+
+  .text-block h1{
+    font-size: 4em;
+  }
+
+  .text-block p{
+    font-size: 6em;
+  }
+
+  
+@media screen and (max-width: 600px) {
+    .text-block {
+        color:ghostwhite;
+    }
+    .text-block h1{
+        font-size: 1.5em;
+      }
+    
+      .text-block p{
+        font-size: 3em;
+      }
   }

@@ -1,7 +1,7 @@
 <div *ngIf="cat" class="cat-info">
   <div class=title>
     <div class="title-text">
-     {{cat.title| uppercase}} {{cat.name | uppercase}}
+      {{cat.title| uppercase}} {{cat.name | uppercase}}
     </div>
     <div class="title-icon">
       <span *ngIf="!cat.gender" class="fa fa-mars"></span>
@@ -38,5 +38,24 @@
     <div [innerHTML]="pedigree"></div>
   </div>
 
-  <button (click)="goBack()">go back</button>
+  <div *ngIf="pedigree" class="parents">
+    <ul class="cats-list list-group">
+      <li class="cat-manage list-group-item">
+        <div *ngIf="cat.sireId">
+          <div class="parent-title">
+            Sire:
+          </div>
+          <a href="/detail/{{cat.sireId}}">{{cat.sireId}}</a>
+        </div>
+        <div *ngIf="cat.damId">
+          <div class="parent-title">
+            Dam:
+          </div>
+          <a href="/detail/{{cat.damId}}">{{cat.damId}}</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <button class="btn btn-secondary btn-sm back-button" (click)="goBack()">go back</button>
 </div>

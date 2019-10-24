@@ -8,7 +8,7 @@
 }
 .gallery-element img{
     display:block;
-    height: 150px;
+    max-height: 150px;
     cursor: pointer;
 }
 .gallery-element a{
@@ -18,3 +18,11 @@
 .modal-button{
     display:block
 }
+
+@media screen and (max-width: 400px) {
+    .gallery-element img{
+        width: 100%;
+        height: none;
+        max-height: none;
+    }
+  }

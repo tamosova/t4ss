@@ -82,11 +82,21 @@ export class CatDetailComponent implements OnInit {
         next: cats => this.cats = cats,
         complete: () => {
           this.cat = this.getCat(id);
-          this.cats.push(this.noInfoCat);
-          this.cats.push(this.unknownCat);
-          this.pedigree = this.buildPedigree(this.cat, this.pedigreeDepth);
+          this.addParentData();
         }
       })
+  }
+
+  addParentData() {
+    if (!this.cat.sireId && !this.cat.damId)
+      {
+        this.pedigree = "";
+      }
+    else {
+      this.cats.push(this.noInfoCat);
+      this.cats.push(this.unknownCat);
+      this.pedigree = this.buildPedigree(this.cat, this.pedigreeDepth);
+    }
   }
 
   goBack(): void {
