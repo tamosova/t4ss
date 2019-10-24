@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { CatService } from "../cat.service";
-import { Cat } from '../cat';
+import { CatService } from "../cat-general/cat.service";
+import { Cat } from '../cat-general/cat';
 
 @Component({
   selector: 'app-cat-detail',
@@ -12,31 +12,40 @@ import { Cat } from '../cat';
 export class CatDetailComponent implements OnInit {
 
   cat: Cat = null;
+  sire: Cat;
+  dam: Cat;
   cats: Cat[];
   pedigree: string;
   pedigreeDepth = 4;
-  noInfoCat = new Cat({
-    "id": -1, "name": "No information", "birthday": "",
-    "gender": "", "colour": "", "sireId": "-1", "damId": "-1", "title": "",
-    "breed": "", "photoLink": ""
-  })
-  unknownCat = new Cat({
-    "id": 0, "name": "Unknown", "birthday": "",
-    "gender": "", "colour": "", "sireId": "0", "damId": "0", "title": "",
-    "breed": "", "photoLink": ""
-  })
 
   constructor(private route: ActivatedRoute,
     private catService: CatService,
     private location: Location) { }
 
   ngOnInit() {
-    this.getCatDetails();
+    this.catService.getCatDetails(+this.route.snapshot.paramMap.get('id')).subscribe(data => {
+      this.cat = new Cat(data[0]);
+      if (this.cat.sireId > 0)
+        this.sire = new Cat(data[0].sire);
+      else if (this.cat.sireId == 0)
+        this.sire = Cat.unknownCat;
+      else
+        this.sire = Cat.noInfoCat;
+      if (this.cat.damId > 0)
+        this.dam = new Cat(data[0].dam);
+      else if (this.cat.damId == 0)
+        this.dam = Cat.unknownCat;
+      else
+        this.dam = Cat.noInfoCat;
+      this.cat.sireOf = data[0].sireOf;
+      this.cat.damOf = data[0].damOf;
+      this.addParentData();
+    });
   }
 
   buildPedigree(cat: Cat, depth: number): string {
-    let sire = (cat.sireId >= 0) ? this.getCat(cat.sireId) : this.noInfoCat;
-    let dam = (cat.damId >= 0) ? this.getCat(cat.damId) : this.noInfoCat;
+    let sire = (cat.sireId >= 0) ? this.getCat(cat.sireId) : Cat.noInfoCat;
+    let dam = (cat.damId >= 0) ? this.getCat(cat.damId) : Cat.noInfoCat;;
 
     if (depth == 1) {
       return `<table width=100% height=100% border='1'>
@@ -88,14 +97,19 @@ export class CatDetailComponent implements OnInit {
   }
 
   addParentData() {
-    if (!this.cat.sireId && !this.cat.damId)
-      {
-        this.pedigree = "";
-      }
+    if (!this.cat.sireId && !this.cat.damId) {
+      this.pedigree = "";
+    }
     else {
-      this.cats.push(this.noInfoCat);
-      this.cats.push(this.unknownCat);
-      this.pedigree = this.buildPedigree(this.cat, this.pedigreeDepth);
+      this.catService.getAllCats()
+        .subscribe({
+          next: cats => this.cats = cats,
+          complete: () => {
+            this.cats.push(Cat.noInfoCat);
+            this.cats.push(Cat.unknownCat);
+            this.pedigree = this.buildPedigree(this.cat, this.pedigreeDepth);
+          }
+        })
     }
   }
 

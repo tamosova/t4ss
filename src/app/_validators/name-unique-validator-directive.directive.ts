@@ -1,6 +1,6 @@
 import { Directive, Input } from '@angular/core';
 import { NG_VALIDATORS, AbstractControl, ValidationErrors, Validator, ValidatorFn, FormGroup } from '@angular/forms';
-import { Cat } from '@app/cat';
+import { Cat } from '../cat-general/cat';
 
 
 @Directive({

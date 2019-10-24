@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Cat, Gender } from '@app/cat';
-import { CatService } from '@app/cat.service';
+import { Cat, Gender } from '../cat-general/cat';
+import { CatService } from '../cat-general/cat.service';
 
 @Component({
   selector: 'app-manage-cats',

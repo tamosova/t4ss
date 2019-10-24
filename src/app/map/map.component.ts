@@ -1,7 +1,7 @@
-import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { latLng, icon, marker, tileLayer, Layer } from 'leaflet';
-import {MarkerCatteryService} from "../marker-cattery.service";
-import { CatteryInfo } from '../cattery-info';
+import {MarkerCatteryService} from "../cat-general/marker-cattery.service";
+import { CatteryInfo } from '../cat-general/cattery-info';
 
 @Component({
   selector: 'app-map',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CatService} from "../cat.service";
-import {Cat} from "../cat";
+import {CatService} from "../cat-general/cat.service";
+import {Cat} from "../cat-general/cat";
 import { ModalService } from '../_modal';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CatService } from '@app/cat.service';
+import { CatService } from '../cat-general/cat.service';
 import { IMasonryGalleryImage } from 'ngx-masonry-gallery';
 
 @Component({

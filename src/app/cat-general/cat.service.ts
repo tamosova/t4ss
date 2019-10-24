@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { CatDetail } from './cat-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,9 @@ export class CatService {
     return this.httpClient.get<Cat[]>(this.catsUrl);
   }
 
+  getCatDetails(id:number):Observable<CatDetail>{
+    return this.httpClient.get<CatDetail>(`${this.catsUrl}/${id}`);
+  }
 
   getCatsAsClassSortedByName(): Cat[] {
     this.catsAsClass = [];

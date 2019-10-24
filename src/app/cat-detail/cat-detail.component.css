@@ -54,12 +54,23 @@ button {
     text-align: center;
 }
 
-@media screen and (max-width: 400px) {
-    .pedigreeClass{
-        display: none;
-    }
-  }
+.parents{
+    display: none;
+}
 
 .back-button{
     margin-top: 1em;
 }
+
+@media screen and (max-width: 400px) {
+    .pedigreeClass{
+        display: none;
+    }
+
+    .parents{
+        display: block;
+    }
+  }
+
+
+

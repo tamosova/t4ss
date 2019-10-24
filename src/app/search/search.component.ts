@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Cat } from '@app/cat';
-import { CatService } from '@app/cat.service';
+import { Cat } from '../cat-general/cat';
+import { CatService } from '../cat-general/cat.service';
 
 @Component({
   selector: 'app-search',
@@ -25,6 +25,7 @@ export class SearchComponent implements OnInit {
   }
 
   preview(cat: Cat) {
+    this.previewCatId=null;
     this.previewCatId = cat.id;
   }
 

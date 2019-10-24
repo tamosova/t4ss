@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CatService } from '@app/cat.service';
-import { Cat } from '@app/cat';
+import { CatService } from '../cat-general/cat.service';
+import { Cat } from '../cat-general/cat';
 
 @Component({
   selector: 'app-cat-preview',

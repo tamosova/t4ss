@@ -11,6 +11,8 @@ export class Cat {
   title: string;
   breed: string;
   photoLink: string;
+  sireOf: Cat[];
+  damOf: Cat[];
 
   static unknownCat =  new Cat({
     "id": -1, "name": "Unknown", "birthday": "",
