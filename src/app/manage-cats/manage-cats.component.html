@@ -43,7 +43,7 @@
                         class="cross-validation-error-message alert alert-danger">
                         Name cannot match parent name.
                     </div>
-                    
+
                     <label class="form-element">gender: &nbsp;</label>
                     <div class="form-check form-check-inline form-element mt-0">
                         <label class="radio-inline">
@@ -68,7 +68,7 @@
 
                     <label class="form-element">birthday:
                         <input [ngModel]="selectedCat.birthday | date:'yyyy-MM-dd'" name="birthday" type="date"
-                            class="datepicker" (ngModelChange)="selectedCat.birthday = $event">
+                            class="datepicker form-control" (ngModelChange)="selectedCat.birthday = $event">
                     </label>
 
                     <div *ngIf="catForm.errors?.birthdayFuture && (catForm.touched || catForm.dirty)"
@@ -102,6 +102,7 @@
                     </div>
 
                     <label class="form-element last">photo:
+                        <input type="file" (change)="onFileChanged($event)" #fileInput>
                         <input [(ngModel)]="selectedCat.photoLink" placeholder="" name="photo" class="form-control" />
                     </label>
                 </div>

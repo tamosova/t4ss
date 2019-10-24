@@ -2,11 +2,11 @@
     <div *ngFor="let cat of cats">
         <div *ngIf= "cat.photoLink">
             <div class="gallery-element ">
-                <img src="assets/cats-photos/fullsize/{{cat.photoLink}}" alt="photo of {{cat.name}}" (click)="openModal(cat)">
+                <img src="{{cat.photoLink}}" alt="photo of {{cat.name}}" (click)="openModal(cat)">
                 <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
             </div>
             <jw-modal id={{cat.id}}>
-                <img src="assets/cats-photos/fullsize/{{cat.photoLink}}" >
+                <img src="{{cat.photoLink}}" >
                 <button (click)="closeModal(cat)" class="modal-button">Close</button>
             </jw-modal>
         </div>

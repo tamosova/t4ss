@@ -10,7 +10,7 @@
   </div>
 
   <div *ngIf="cat.photoLink" class="cat-photo">
-    <img src="assets/cats-photos/fullsize/{{cat.photoLink}}">
+    <img src="{{cat.photoLink}}">
   </div>
 
   <div class="colour">Colour: {{cat.colour}}</div>
@@ -45,13 +45,13 @@
           <div class="parent-title">
             Sire:
           </div>
-          <a href="/detail/{{cat.sireId}}">{{sire.name}}</a>
+          <a routerLink="/detail/{{cat.sireId}}">{{sire.name}}</a>
         </div>
         <div *ngIf="cat.damId">
           <div class="parent-title">
             Dam:
           </div>
-          <a href="/detail/{{cat.damId}}">{{dam.name}}</a>
+          <a routerLink="/detail/{{cat.damId}}">{{dam.name}}</a>
         </div>
       </li>
     </ul>
@@ -64,13 +64,13 @@
 
     <ul class="cats-list list-group">
       <li *ngFor="let offspring of cat.sireOf">
-        <a href="/detail/{{offspring.id}}">{{offspring.name}}</a>
+        <a routerLink="/detail/{{offspring.id}}">{{offspring.name}}</a>
       </li>
     </ul>
 
     <ul class="cats-list list-group">
       <li  *ngFor="let offspring of cat.damOf">
-        <a href="/detail/{{offspring.id}}">{{offspring.name}}</a>
+          <a routerLink="/detail/{{offspring.id}}">{{offspring.name}}</a>
       </li>
     </ul>
   </div>

@@ -21,7 +21,11 @@ export class CatDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private catService: CatService,
-    private location: Location) { }
+    private location: Location) {
+      route.params.subscribe(val => {
+        this.getCatDetails();
+      });
+    }
 
   ngOnInit() {
     this.getCatDetails();
@@ -84,7 +88,7 @@ export class CatDetailComponent implements OnInit {
       return `<td width=${100 / this.pedigreeDepth}% align='center'>Unknown</td>`;
 
     if (cat.photoLink) {
-      catImg = `<img src='assets/cats-photos/fullsize/${cat.photoLink}' alt='photo of ${cat.name}' width='80%'>`
+      catImg = `<img src='${cat.photoLink}' alt='photo of ${cat.name}' width='80%'>`
     }
     return `<td width=${100 / this.pedigreeDepth}% align='center'>
       <a href="/detail/${cat.id}">

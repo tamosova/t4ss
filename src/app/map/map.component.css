@@ -1,3 +1,9 @@
 #map{
     height: calc(100vh - 152px);
 }
+
+@media screen and (max-width: 440px) {
+    #map {
+        height: calc(100vh - 92px);
+    }
+  }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cat, Gender } from '../cat-general/cat';
 import { CatService } from '../cat-general/cat.service';
+import { PhotoFileService } from '@app/photo-file.service';
 
 @Component({
   selector: 'app-manage-cats',
@@ -16,8 +17,10 @@ export class ManageCatsComponent implements OnInit {
   females: Cat[] = [];
   filtered = false;
   updateTitle = "";
+  selectedFile: File;
 
-  constructor(private catService: CatService) { }
+  constructor(private catService: CatService,
+    private photoFileService: PhotoFileService) { }
 
   ngOnInit() {
     this.getCats();
@@ -28,12 +31,24 @@ export class ManageCatsComponent implements OnInit {
   }
 
   save() {
-    if (this.selectedCat.id)
-    {
+    if (this.selectedCat.id) {
       this.saveUpdated();
-    }
-    this.addCat()
+    } else
+      this.addCat()
   }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  saveFile(id: number) {
+    const uploadData = new FormData();
+    uploadData.append(this.selectedFile.name, this.selectedFile, this.selectedFile.name);
+    this.photoFileService.uploadPhoto(id, uploadData).subscribe(() => {
+    });
+  }
+
+
 
   showAddCatForm() {
     this.cancelUnsavedChanges();
@@ -66,26 +81,41 @@ export class ManageCatsComponent implements OnInit {
   }
 
   saveUpdated(): void {
-    this.catService.updateCat(this.selectedCat).subscribe();
-    alert("Your changes has been saved!");
-    this.selectedCat = null;
-    this.filtered = false;
+    this.catService.updateCat(this.selectedCat).subscribe(cat => {
+      if (this.selectedFile) {
+        this.saveFile(cat.id);
+      }
+      alert("Your changes has been saved!");
+      this.selectedCat = null;
+      this.filtered = false;
+      this.selectedFile = null;
+    });
   }
 
   addCat() {
-    this.catService.addCat(this.selectedCat).subscribe();
-    alert(`${this.selectedCat.name} added!`);
-    this.getCats();
-    this.filtered = false;
-    this.cancelUnsavedChanges();
-    this.searchText = "";
+    this.catService.addCat(this.selectedCat).subscribe(cat => {
+      if (this.selectedFile) {
+        this.saveFile(cat.id);
+      }
+      alert(`${this.selectedCat.name} added!`);
+      this.selectedCat = null;
+      this.selectedFile = null;
+      this.getCats();
+      this.filtered = false;
+      this.cancelUnsavedChanges();
+      this.searchText = "";
+    });
+
+
   }
 
   deleteCat(cat: Cat) {
     if (confirm(`Are you sure to delete ${cat.name}?`)) {
-      this.catService.deleteCat(cat.id).subscribe();
-      this.getCats();
-      this.filtered = false;
+      this.catService.deleteCat(cat.id).subscribe(() => {
+        this.getCats();
+        this.filtered = false;
+      });
+
     }
   }
   cancel() {
