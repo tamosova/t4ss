@@ -23,7 +23,7 @@
         </div>
 
         <div class="col-md">
-            <form *ngIf="selectedCat" #catForm="ngForm" appSelfParent appBirthdayFuture (ngSubmit)="save()">
+            <form *ngIf="selectedCat" #catForm="ngForm" appSelfParent appBirthdayFuture ngNativeValidate (ngSubmit)="save()">
                 <div class="form-title">
                     {{updateTitle}}
                 </div>
@@ -31,7 +31,7 @@
                     <input type="hidden" name="catId" [(ngModel)]="selectedCat.id" />
 
                     <label class="form-element">name:
-                        <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" class="form-control" />
+                        <input [(ngModel)]="selectedCat.name" placeholder="name" name="name" class="form-control" required/>
                     </label>
 
                     <div *ngIf="!selectedCat.name && (catForm.touched || catForm.dirty)"
