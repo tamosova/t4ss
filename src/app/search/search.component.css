@@ -2,14 +2,18 @@ h1 {
     text-align: center;
     margin: 1em;
 }
-.preview {
+.preview-title {
     text-align: center;
     font-size: 1.5em;
+    margin-bottom: 0.1em;
 }
-
+.preview {
+    margin-bottom: 2em;
+}
 .cat-manage {
     position: relative;
 }
+
 
 .cat-manage .actions {
     position: absolute;
@@ -17,3 +21,21 @@ h1 {
     top: 50%;
     transform: translateY(-50%);
 }
+
+.text-center button{
+    margin-top: 0.3em;
+}
+
+.framed {
+    border:1px solid lightgray;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 400px) {
+    .preview {
+        position: fixed;
+        top: 40%;
+        left: 10%;
+        background-color: white;
+    }
+  }

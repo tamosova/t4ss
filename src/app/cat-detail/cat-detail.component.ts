@@ -22,10 +22,10 @@ export class CatDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private catService: CatService,
     private location: Location) {
-      route.params.subscribe(val => {
-        this.getCatDetails();
-      });
-    }
+    route.params.subscribe(val => {
+      this.getCatDetails();
+    });
+  }
 
   ngOnInit() {
     this.getCatDetails();
@@ -35,6 +35,7 @@ export class CatDetailComponent implements OnInit {
     this.catService.getCatDetails(+this.route.snapshot.paramMap.get('id')).subscribe(data => {
       this.buildCatDetailObject(data);
       this.addParentData();
+      this.saveToLocalStorage();
     });
   }
 
@@ -125,4 +126,17 @@ export class CatDetailComponent implements OnInit {
     this.location.back();
   }
 
+  saveToLocalStorage() {
+    let viewedCats: Cat[];
+    if (localStorage.getItem('viewedCats')) {
+      viewedCats = JSON.parse(localStorage.getItem('viewedCats'));
+    }
+    else {
+      viewedCats = [];
+    }
+    if (!viewedCats.find(cat => cat.id == this.cat.id)) {
+      viewedCats.push(this.cat);
+      localStorage.setItem('viewedCats', JSON.stringify(viewedCats));
+    }
+  }
 }

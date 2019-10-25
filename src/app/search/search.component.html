@@ -11,7 +11,7 @@
         <li class="cat-manage list-group-item" *ngFor="let cat of cats| filter : searchText">
           <a routerLink="/detail/{{cat.id}}">{{cat.name}}</a>
           <div class="actions btn-group">
-            <button type="button" class="btn btn-secondary btn-sm" (click)="preview(cat)">
+            <button type="button" class="btn btn-primary btn-sm" (click)="preview(cat)">
               <span class="fa fa-eye"></span>
             </button>
           </div>
@@ -19,9 +19,25 @@
       </ul>
     </div>
     <div class="col-md-4">
-      <div class="preview">Preview</div>
-      <div *ngIf="previewCatId">
-        <app-cat-preview [id]="previewCatId" (emitPass)="showNext($event)"></app-cat-preview>
+      <div *ngIf="previewCatId" class="preview">
+        <div class="preview-title">Preview</div>
+        <div class="framed">
+          <app-cat-preview [id]="previewCatId" (emitPass)="closePreview($event)"></app-cat-preview>
+        </div>
+      </div>
+
+      <div *ngIf="viewedCats&&viewedCats.length">
+        <div class="preview-title">Recently viewed</div>
+        <ul class="cats-list list-group">
+          <li class="cat-manage list-group-item" *ngFor="let viewedCat of viewedCats">
+            <a routerLink="/detail/{{viewedCat}}">{{viewedCat.name}}</a>
+          </li>
+        </ul>
+        <div class="text-center">
+          <button type="button" (click)="clearPreviewedList()">
+            Clear
+          </button>
+        </div>
       </div>
     </div>
   </div>
