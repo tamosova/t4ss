@@ -10,7 +10,7 @@ import { CatDetail } from './cat-detail';
   providedIn: 'root'
 })
 export class CatService {
-  private catsUrl = 'https://kurbobs.benn0.be/cats';
+  catsUrl = 'https://kurbobs.benn0.be/cats';
   catsJSON;
   catsAsClass: Cat[] = [];
   httpOptions = {
@@ -45,7 +45,6 @@ export class CatService {
             if(cat1.name > cat2.name) { return 1; }
             return 0;
         })
-        
         }
       });
     return this.catsAsClass;

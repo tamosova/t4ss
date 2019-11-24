@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+/* import { TestBed } from '@angular/core/testing';
 
 import { MarkerCatteryService } from './marker-cattery.service';
 
@@ -10,3 +10,4 @@ describe('MarkerCatteryService', () => {
     expect(service).toBeTruthy();
   });
 });
+ */

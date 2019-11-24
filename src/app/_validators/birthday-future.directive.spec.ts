@@ -1,4 +1,4 @@
-import { BirthdayFutureValidatorDirective } from './birthday-future.directive';
+/* import { BirthdayFutureValidatorDirective } from './birthday-future.directive';
 
 describe('BirthdayFutureDirective', () => {
   it('should create an instance', () => {
@@ -6,3 +6,4 @@ describe('BirthdayFutureDirective', () => {
     expect(directive).toBeTruthy();
   });
 });
+ */
